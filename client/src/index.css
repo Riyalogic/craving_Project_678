@@ -2,13 +2,13 @@
 
 :root{
 
---primary: #853953;
---Primary-Text: #2C2C2C;
---secondary: #612D53;
---accent: #A05A79;
---Success: #4CAF50;
---warning: #F59E0B;
---error: #DC2626;
---Background: #F3F4F4;
---Text: #2C2C2C;
+--primary: #A54E6E;
+--Primary-Text: #D7A7BA;
+--secondary: #7B4B6F;
+--accent: #E8B7C8;
+--Success: #66BB6A;
+--warning: #FBBF24;
+--error: #EF5350;
+--Background: #FAFAFA;
+--Text: #4B5563;
 }
