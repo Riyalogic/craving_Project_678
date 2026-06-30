@@ -5,17 +5,20 @@ import Navbar from "./component/Navbar";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ContactUs from "./pages/ContactUs";
+import {Toaster} from "react-hot-toast";
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
+      <Toaster />
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/user/dashboard" element></Route>
         </Routes>
       </BrowserRouter>
     </>
