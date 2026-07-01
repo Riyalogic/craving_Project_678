@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import deliveryboy from "../assets/deliveryboy.png"
+import deliveryboy from "../assets/deliveryboy.png";
+import api from "../config/api.config";
 import toast from "react-hot-toast";
 
-export const Login = () => {
+ const Login = () => {
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     email: "",
@@ -30,11 +31,15 @@ export const Login = () => {
     };
 
     try {
-      const res = await api.post("/auth/login", payload)
+      const res = await api.post("/auth/login", payload);
       toast.success(res.data.message);
-      console.log(res.data.data.photo);
+      sessionStorage.setItem("UserData", JSON.stringify(res.data.data));
+      navigate("/user/dashboard");
     } catch (error) {
-      toast.error(error.response.status + " " + error.response?.data?.message || error.message,);
+      toast.error(
+        error.response?.status + " | " + error.response?.data?.message ||
+          error.message,
+      );
     }
   };
 
@@ -44,7 +49,7 @@ export const Login = () => {
     <>
       <div className=" h-[90vh] bg-linear-to-r from-(--secondary) to-(--primary) grid grid-cols-2 p-10">
         <div className=" hidden md:block">
-          <img src="{deliveryboy}" alt="" className=" rotate-y-180" />
+          <img src={deliveryboy} alt="" className=" rotate-y-180" />
         </div>
         <div className=" w-2xl bg-(--background) rounded shadow p-10 flex flex-col justify-center">
           <div className=" text-xl font-semibold mb-4">Welcome Back!</div>

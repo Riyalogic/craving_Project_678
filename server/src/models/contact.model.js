@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
-const ContactSchema = mongoose.Schema({
+const ContactSchema = mongoose.Schema(
+    {
     fullName: {
         type: String,
         required: true,
@@ -24,8 +25,8 @@ const ContactSchema = mongoose.Schema({
 },
 {
     timestamps: true
-}
-)
+},
+);
 
 const Contact = mongoose.model("contact",ContactSchema)
 

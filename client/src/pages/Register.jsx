@@ -49,11 +49,10 @@ const Register = () => {
     };
 
     try {
-        const res = await api.post("/auth/register",payload);
-        alert(res.data.message)
-    } catch (error)
-     {
-        console.log(res?.data?.message || error.message);
+      const res = await api.post("/auth/register", payload);
+      alert(res.data.message);
+    } catch (error) {
+      console.log(error.response?.data?.message || error.message);
     }
   };
 
@@ -61,8 +60,8 @@ const Register = () => {
   return (
     <>
       <div className=" min-h-[90vh] bg-linear-to-r from-(--secondary) to-(--primary) grid grid-cols-2 p-10">
-        <div className=" hidden md:block">
-            <img src="{deliveryboy}" alt="" className=" rotate-y-180" />
+        <div className="hidden md:block">
+          <img src="{deliveryboy}" alt="" className="rotate-y-180" />
         </div>
         <div className=" w-2xl bg-(--background) rounded shadow p-10 flex flex-col justify-center">
           <div className=" text-xl font-semibold mb-4">
@@ -76,6 +75,17 @@ const Register = () => {
                 id="fullName"
                 name="fullName"
                 value={registerData.fullName}
+                onChange={handleChange}
+                className={inputClass}
+              />
+            </div>
+            <div className=" col-span-2 flex flex-col gap-2">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={registerData.email}
                 onChange={handleChange}
                 className={inputClass}
               />

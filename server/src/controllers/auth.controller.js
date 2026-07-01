@@ -20,7 +20,7 @@ export const RegisterUser = async (req, res, next) => {
       return next(error);
     }
 
-    const phototurl = `https://placehold.co/600x400?text=${fullName.charAt(0).toUpperCase()}`;
+    const photot = `https://placehold.co/600x400?text=${fullName.charAt(0).toUpperCase()}`;
 
     const SALT = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, SALT);
