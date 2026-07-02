@@ -19,7 +19,7 @@ const ContactSchema = mongoose.Schema(
         required: true,
     },
     message: {
-        type: Date,
+        type: String,
         required: true,
     },
 },
@@ -28,6 +28,6 @@ const ContactSchema = mongoose.Schema(
 },
 );
 
-const Contact = mongoose.model("contact",ContactSchema)
+const Contact = mongoose.model("contact", ContactSchema);
 
 export default Contact;

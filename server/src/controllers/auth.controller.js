@@ -7,7 +7,7 @@ export const RegisterUser = async (req, res, next) => {
 
     if (!fullName || !email || !password || !phone || !gender || !dob) {
       // res.status(400).json({ message: "All Feilds Required" });
-      const error = new Error("All Fields Required");
+      const error = new Error("All fields Required");
       error.statusCode = 400;
       return next(error);
     }
@@ -15,12 +15,12 @@ export const RegisterUser = async (req, res, next) => {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       // res.status(409).json({ message: "Email Already Registered" });
-      const error = new Error("Email Already Registered");
+      const error = new Error("Email already Registered");
       error.statusCode = 409;
       return next(error);
     }
 
-    const photot = `https://placehold.co/600x400?text=${fullName.charAt(0).toUpperCase()}`;
+    const photo = `https://placehold.co/600x400?text=${fullName.charAt(0).toUpperCase()}`;
 
     const SALT = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, SALT);

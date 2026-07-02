@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import deliveryboy from "../assets/deliveryboy.png";
 import api from "../config/api.config";
 import toast from "react-hot-toast";
+import { useAuth } from "../context/AuthContext";
 
  const Login = () => {
+   const { setUser, setIsLogin, isLogin } = useAuth();
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     email: "",
@@ -34,6 +36,7 @@ import toast from "react-hot-toast";
       const res = await api.post("/auth/login", payload);
       toast.success(res.data.message);
       sessionStorage.setItem("UserData", JSON.stringify(res.data.data));
+      setUser(res.data.data);
       navigate("/user/dashboard");
     } catch (error) {
       toast.error(
@@ -47,7 +50,7 @@ import toast from "react-hot-toast";
     "border p-2 rounded focus:outline-none focus:ring-2 focus:ring-(--accent)";
   return (
     <>
-      <div className=" h-[90vh] bg-linear-to-r from-(--secondary) to-(--primary) grid grid-cols-2 p-10">
+      <div className=" min-h-[90vh] bg-linear-to-r from-(--secondary) to-(--primary) grid grid-cols-2 p-10">
         <div className=" hidden md:block">
           <img src={deliveryboy} alt="" className=" rotate-y-180" />
         </div>

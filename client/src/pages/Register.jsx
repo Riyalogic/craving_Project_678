@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import deliverboy from "../assets/deliveryboy.png";
+import deliveryboy from "../assets/deliveryboy.png"
 import api from "../config/api.config.js";
 
 const Register = () => {
@@ -61,7 +61,7 @@ const Register = () => {
     <>
       <div className=" min-h-[90vh] bg-linear-to-r from-(--secondary) to-(--primary) grid grid-cols-2 p-10">
         <div className="hidden md:block">
-          <img src="{deliveryboy}" alt="" className="rotate-y-180" />
+          <img src={deliveryboy} alt="" className="rotate-y-180" />
         </div>
         <div className=" w-2xl bg-(--background) rounded shadow p-10 flex flex-col justify-center">
           <div className=" text-xl font-semibold mb-4">
@@ -79,7 +79,7 @@ const Register = () => {
                 className={inputClass}
               />
             </div>
-            <div className=" col-span-2 flex flex-col gap-2">
+            <div className=" flex flex-col gap-2">
               <label htmlFor="email">Email</label>
               <input
                 type="email"
@@ -131,7 +131,7 @@ const Register = () => {
               />
             </div>
 
-            <div className="flex flex-col gap-2 mt-4">
+            <div className="flex flex-col gap-2 ">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
@@ -143,7 +143,7 @@ const Register = () => {
               />
             </div>
 
-            <div className="flex flex-col gap-2 mt-4">
+            <div className="flex flex-col gap-2">
               <label htmlFor="confirmPassword">Confirm Password</label>
               <input
                 type="password"

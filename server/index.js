@@ -4,7 +4,7 @@ dotenv.config();
 import express from "express";
 import connectDB from "./src/config/dbConnection.config.js"
 import AuthRouter from "./src/routers/auth.router.js"
-import PublicROuter from "./src/routers/public.router.js"
+import PublicRouter from "./src/routers/public.router.js"
 import morgan from "morgan";
 import cors from "cors";
 
@@ -15,8 +15,8 @@ app.use(express.json());
 
 app.use(morgan("dev"));
 
-app.use("/auth", AuthRouter)
-app.use("/public", PublicROuter)
+app.use("/auth",AuthRouter)
+app.use("/public",PublicRouter)
 
 app.get("/", (req, res) => {
   console.log("Default Get API Hit");
@@ -29,12 +29,12 @@ app.use((err, req, res, next)  => {
   const ErrMessage = err.message || "Internal Server Error";
   const ErrStatusCode = err.statusCode || 500;
 
-  res.status(ErrStatusCode).json({message: ErrMessage});
+  res.status(ErrStatusCode).json({message: ErrMessage });
 });
 
-const port = process.env.Port || 5000;
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
-  console.log("Server Started on PORT: ", port);
+  console.log("Server Started on Port: ", port);
   connectDB();
 });
