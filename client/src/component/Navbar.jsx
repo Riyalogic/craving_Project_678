@@ -8,10 +8,16 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    sessionStorage.removeItem("UserData");
+
+    try {
+      const res = await api.get("/auth/logout")
+      sessionStorage.removeItem("UserData");
     setIsLogin(false);
     setUser(false);
     navigate("/");
+    } catch (error) {
+      
+    }   
   };
   return (
     <>

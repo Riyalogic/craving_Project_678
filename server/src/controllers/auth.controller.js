@@ -67,6 +67,8 @@ export const LoginUser = async (req, res, next) => {
       return next(error);
     }
 
+
+    
     res.status(200).json({
       message: "Welcome Back",
       data: existingUser,
@@ -79,6 +81,9 @@ export const LoginUser = async (req, res, next) => {
 
 export const LogoutUser = async (req, res, next) => {
   try {
+    res.clearCookie("CravingToken" ,{ maxAge: 0})
+
+    res.status(200).json({message: "Logout Successfully"})
   } catch (error) {
     console.log(error.message);
     next();

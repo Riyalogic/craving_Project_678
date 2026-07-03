@@ -15,7 +15,7 @@ const Register = () => {
     confirmPassword: "",
   });
 
-  const [validateError, setValidateError] = useState("");
+  const [validateError, setValidateError] = useState();
 
   const handleChange = (e) => {
     const name = e.target.name;

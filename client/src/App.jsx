@@ -5,7 +5,7 @@ import Navbar from "./component/Navbar";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ContactUs from "./pages/ContactUs";
-import {Toaster} from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import UserDashboard from "./pages/dashboard/userDashboard";
 
 const App = () => {
@@ -19,7 +19,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/user/dashboard" element={<UserDashboard />}></Route>
+          <Route path="/user/dashboard" element={<UserDashboard />} />
         </Routes>
       </BrowserRouter>
     </>

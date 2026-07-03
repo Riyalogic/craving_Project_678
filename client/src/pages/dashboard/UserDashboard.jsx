@@ -1,15 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { useAuth } from "../../context/AuthContext";
+import React, { useState } from "react";
+import Sidebar from "../../component/userDashboard/Sidebar";
+import Overview from "../../component/userDashboard/Overview";
+import Orders from "../../component/userDashboard/Orders";
+import Settings from "../../component/userDashboard/Setting";
+import WishList from "../../component/userDashboard/WishList";
 
 const UserDashboard = () => {
-  const { user } = useAuth();
+  const [active, setActive] = useState("Overview");
+
   return (
     <>
-      <div>Welcome Back!! {user.fullName}</div>
-      <div>Welcome Back!! {user.email}</div>
-      <div>Welcome Back!! {user.phone}</div>
-      <div className=" w-24 h-24 rounded-full overflow-hidden">
-        <img src={user.photo} alt="" className=" w-full h-full object-cover" />
+      <div className=" flex h-[92vh]">
+        <div className=" w-1/6 border border-red-500 h-full">
+        <Sidebar active={active} setActive={setActive} />
+        </div>
+        <div className=" w-5/6 border border-green-500 h-full">
+        {active === "Overview" && <Overview />}
+        {active === "Orders" && <Orders />}
+        {active === "WishList" && <WishList />}
+        {active === "Setting" && <Setting />}
+        </div>
       </div>
     </>
   );
