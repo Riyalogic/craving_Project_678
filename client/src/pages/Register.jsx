@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import deliveryboy from "../assets/deliveryboy.png"
+import deliveryboy from "../assets/deliveryboy.png";
 import api from "../config/api.config.js";
 
 const Register = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [registerData, setRegisterData] = useState({
     fullName: "",
     email: "",
@@ -37,7 +37,6 @@ const Register = () => {
 
     setValidateError("");
     console.log("Register data submitted:", registerData);
-    
 
     const payload = {
       fullName: registerData.fullName,
@@ -56,7 +55,8 @@ const Register = () => {
     }
   };
 
-  const inputClass = "border p-2 rounded focus:outline-none focus:ring-2 focus:ring-(--accent)";
+  const inputClass =
+    "border p-2 rounded focus:outline-none focus:ring-2 focus:ring-(--accent)";
   return (
     <>
       <div className=" min-h-[90vh] bg-linear-to-r from-(--secondary) to-(--primary) grid grid-cols-2 p-10">
@@ -64,9 +64,7 @@ const Register = () => {
           <img src={deliveryboy} alt="" className="rotate-y-180" />
         </div>
         <div className=" w-2xl bg-(--background) rounded shadow p-10 flex flex-col justify-center">
-          <div className=" text-xl font-semibold mb-4">
-            Create an Account
-          </div>
+          <div className=" text-xl font-semibold mb-4">Create an Account</div>
           <form onSubmit={handleSubmit} className=" grid grid-cols-2 gap-4">
             <div className=" col-span-2 flex flex-col gap-2">
               <label htmlFor="fullName">Full Name</label>
@@ -112,10 +110,10 @@ const Register = () => {
                 onChange={handleChange}
                 className={inputClass}
               >
-              <option value="">Select gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
+                <option value="">Select gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
               </select>
             </div>
 
@@ -156,7 +154,9 @@ const Register = () => {
             </div>
 
             {validateError && (
-              <p className=" text-red-500 text-sm col-span-2">{validateError}</p>
+              <p className=" text-red-500 text-sm col-span-2">
+                {validateError}
+              </p>
             )}
 
             <button

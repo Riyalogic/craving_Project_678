@@ -5,6 +5,7 @@ import express from "express";
 import connectDB from "./src/config/dbConnection.config.js"
 import AuthRouter from "./src/routers/auth.router.js"
 import PublicRouter from "./src/routers/public.router.js"
+import UserRouter from "./src/routers/user.route.js"
 import morgan from "morgan";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -19,6 +20,7 @@ app.use(morgan("dev"));
 
 app.use("/auth",AuthRouter)
 app.use("/public",PublicRouter)
+app.use("/user",UserRouter)
 
 app.get("/", (req, res) => {
   console.log("Default Get API Hit");

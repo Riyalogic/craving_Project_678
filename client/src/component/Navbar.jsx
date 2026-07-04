@@ -2,22 +2,27 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { AiOutlineLogout } from "react-icons/ai";
+import api from "../config/api.config.js";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, setUser, isLogin, setIsLogin } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-
+  const handleLogout = async () => {
     try {
-      const res = await api.get("/auth/logout")
+      const res = await api.get("/auth/logout");
       sessionStorage.removeItem("UserData");
-    setIsLogin(false);
-    setUser(false);
-    navigate("/");
+      setIsLogin(false);
+      setUser(false);
+      navigate("/");
+      toast.success(res.data.message);
     } catch (error) {
-      
-    }   
+      toast.error(
+        error.response.status + " | " + error.response?.data?.message ||
+          error.message,
+      );
+    }
   };
   return (
     <>
@@ -29,7 +34,7 @@ const Navbar = () => {
             Home
           </Link>
 
-           <Link to={"/contact-us"} className=" hover:underline">
+          <Link to={"/contact-us"} className=" hover:underline">
             Contact us
           </Link>
           {isLogin ? (
@@ -56,13 +61,16 @@ const Navbar = () => {
             </div>
           ) : (
             <>
-          <Link to={"/login"} className="hover:underline hover:text-(--accent)">
-            Login
-          </Link>
-          <Link to={"/register"} className="hover:underline">
-            Register
-          </Link>
-         </>
+              <Link
+                to={"/login"}
+                className="hover:underline hover:text-(--accent)"
+              >
+                Login
+              </Link>
+              <Link to={"/register"} className="hover:underline">
+                Register
+              </Link>
+            </>
           )}
         </div>
       </div>
