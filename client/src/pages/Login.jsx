@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import api from "../config/api.config";
+import api from "../config/api.config.js";
 import { useAuth } from "../context/AuthContext";
 
  const Login = () => {
@@ -74,71 +74,6 @@ const validationErrors = validateForm(formData);
     }
   };
   return (
-      // <div className=" min-h-[90vh] bg-linear-to-r from-(--secondary) to-(--primary) grid grid-cols-2 p-10">
-      //   <div className=" hidden md:block">
-      //     <img src={deliveryboy} alt="" className=" rotate-y-180" />
-      //   </div>
-      //   <div className=" w-2xl bg-(--background) rounded shadow p-10 flex flex-col justify-center">
-      //     <div className=" text-xl font-semibold mb-4">Welcome Back!</div>
-
-      //     <form onSubmit={handleSubmit} className=" grid grid-cols-2 gap-4">
-      //       <div className=" col-span-2 flex flex-col gap-2">
-      //         <label htmlFor="email">Email</label>
-      //         <input
-      //           type="email"
-      //           id="email"
-      //           name="email"
-      //           value={loginData.email}
-      //           onChange={handleChange}
-      //           className={inputClass}
-      //         />
-      //       </div>
-      //       <div className=" col-span-2 flex flex-col gap-2 ">
-      //         <label htmlFor="password">Password</label>
-      //         <input
-      //           type="password"
-      //           id="password"
-      //           name="password"
-      //           value={loginData.password}
-      //           onChange={handleChange}
-      //           className={inputClass}
-      //         />
-      //       </div>
-
-      //       {validateError && (
-      //         <p className=" text-red-500 text-sm col-span-2">
-      //           {validateError}
-      //         </p>
-      //       )}
-      //       <button
-      //         type="submit"
-      //         className=" col-span-2 mt-2 bg-(--primary) text-white py-2 px-4 rounded hover:bg-(--accent)"
-      //       >
-      //         Login
-      //       </button>
-      //     </form>
-      //     <div className=" mt-6 text-center space-y-2">
-      //       <p className=" text-sm">
-      //         Don't have an account?{" "}
-      //         <button
-      //           onClick={() => navigate("/register")}
-      //           className=" text-(--primary) hover:underline font-semibold"
-      //         >
-      //           Register here
-      //         </button>
-      //       </p>
-      //       <p className=" text-sm">
-      //         Having trouble?{" "}
-      //         <button
-      //           onClick={() => navigate("/contact")}
-      //           className=" text-(--primary) hover:underline font-semibold"
-      //         >
-      //           Contact Us
-      //         </button>
-      //       </p>
-      //     </div>
-      //   </div>
-      // </div>
       <div className="h-[90vh] bg-[url('/foodTable.webp')] flex items-center justify-start bg-cover bg-center p-10 md:ps-30">
       <div className="bg-white rounded-lg shadow-md px-10 py-6 max-w-md w-full">
         <h1 className="text-3xl font-bold text-(--color-primary) mb-2 text-center">
@@ -148,9 +83,7 @@ const validationErrors = validateForm(formData);
           Login to your Cravings account
         </p>
 
-        {/* Login Form */}
         <form onSubmit={handleSubmit}>
-          {/* Email */}
           <div className="mb-4">
             <label className="block text-(--color-neutral) font-semibold mb-2">
               Email
@@ -174,7 +107,6 @@ const validationErrors = validateForm(formData);
             )}
           </div>
 
-          {/* Password */}
           <div className="mb-4">
             <label className="block text-(--color-neutral) font-semibold mb-2">
               Password
@@ -211,7 +143,6 @@ const validationErrors = validateForm(formData);
             )}
           </div>
 
-          {/* Remember Me & Forgot Password */}
           <div className="flex items-center justify-between mb-6">
             <label className="flex items-center gap-2 cursor-pointer text-(--color-secondary)">
               <input
@@ -231,7 +162,6 @@ const validationErrors = validateForm(formData);
             </Link>
           </div>
 
-          {/* Login Button */}
           <button
             type="submit"
             disabled={loading}
@@ -241,7 +171,6 @@ const validationErrors = validateForm(formData);
           </button>
         </form>
 
-        {/* Divider */}
         <div className="relative mb-6">
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-gray-300"></div>
@@ -253,7 +182,6 @@ const validationErrors = validateForm(formData);
           </div>
         </div>
 
-        {/* Register Link */}
         <p className="text-center text-(--color-secondary) text-sm">
           <Link
             to="/register"

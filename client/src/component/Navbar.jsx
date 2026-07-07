@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logoLight from "../assets/transparentLogoLight.png";
 import { useAuth } from "../context/AuthContext";
 import { FaPowerOff } from "react-icons/fa";
-import api from "../config/api.config.js";
+import api from "../config/api.config";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
@@ -34,7 +34,6 @@ const Navbar = () => {
       setIsLogin(false);
       setRole(null)
       navigate("/");
-      toast.success(res.data.message);
     } catch (error) {
       toast.error(
         error.response?.data?.message ||
@@ -46,50 +45,6 @@ const Navbar = () => {
   };
   return (
     <>
-      {/* <div className=" bg-(--primary) text-lg text-(--primary-text) p-3 flex justify-between items-center">
-        <div>Cravings</div>
-
-        <div className=" flex gap-4 items-center">
-          <Link to={"/"} className=" hover:underline">
-            Home
-          </Link>
-
-          <Link to={"/contact-us"} className=" hover:underline">
-            Contact us
-          </Link>
-          {isLogin ? (
-            <div className="border-s-2 flex justify-center items-center gap-4 px-4">
-              <div className="w-8 h-8 rounded-full overflow-hidden">
-                <img
-                  src={user.photo}
-                  alt=""
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <Link
-                to={"/user/dashboard"}
-                className="hover:underline hover:text-(--accent)"
-              >
-                {user.fullName}
-              </Link>
-              <button
-                onClick={handleLogout}
-                className="text-red-300 hover:text-red-600"
-              >
-                <AiOutlineLogout />
-              </button>
-            </div>
-          ) : (
-            <>
-              <Link
-                to={"/login"}
-                className="hover:underline hover:text-(--accent)"
-              >
-                Login
-              </Link>
-              <Link to={"/register"} className="hover:underline">
-                Register
-              </Link> */}
 
       <div className="sticky top-0 z-99 flex items-center justify-between px-12 py-1 bg-(--color-primary) text-white w-full h-16 shadow-md">
         <div className="h-full">
@@ -143,10 +98,6 @@ const Navbar = () => {
         )}
       </div>
     </>
-    //)}
-    //     </div>
-    //   </div>
-    // </>
   );
 };
 

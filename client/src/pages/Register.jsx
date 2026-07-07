@@ -88,136 +88,6 @@ const Register = () => {
   };
 
   return (
-    // <div className=" min-h-[90vh] bg-linear-to-r from-(--secondary) to-(--primary) grid grid-cols-2 p-10">
-    //   <div className="hidden md:block">
-    //     <img src={deliveryboy} alt="" className="rotate-y-180" />
-    //   </div>
-    //   <div className=" w-2xl bg-(--background) rounded shadow p-10 flex flex-col justify-center">
-    //     <div className=" text-xl font-semibold mb-4">Create an Account</div>
-    //     <form onSubmit={handleSubmit} className=" grid grid-cols-2 gap-4">
-    //       <div className=" col-span-2 flex flex-col gap-2">
-    //         <label htmlFor="fullName">Full Name</label>
-    //         <input
-    //           type="text"
-    //           id="fullName"
-    //           name="fullName"
-    //           value={registerData.fullName}
-    //           onChange={handleChange}
-    //           className={inputClass}
-    //         />
-    //       </div>
-    //       <div className=" flex flex-col gap-2">
-    //         <label htmlFor="email">Email</label>
-    //         <input
-    //           type="email"
-    //           id="email"
-    //           name="email"
-    //           value={registerData.email}
-    //           onChange={handleChange}
-    //           className={inputClass}
-    //         />
-    //       </div>
-
-    //       <div className="flex flex-col gap-2 ">
-    //         <label htmlFor="phone">Phone</label>
-    //         <input
-    //           type="tel"
-    //           id="phone"
-    //           name="phone"
-    //           value={registerData.phone}
-    //           onChange={handleChange}
-    //           className={inputClass}
-    //         />
-    //       </div>
-
-    //       <div className="flex flex-col gap-2 ">
-    //         <label htmlFor="gender">Gender</label>
-    //         <select
-    //           id="gender"
-    //           name="gender"
-    //           value={registerData.gender}
-    //           onChange={handleChange}
-    //           className={inputClass}
-    //         >
-    //           <option value="">Select gender</option>
-    //           <option value="male">Male</option>
-    //           <option value="female">Female</option>
-    //           <option value="other">Other</option>
-    //         </select>
-    //       </div>
-
-    //       <div className="flex flex-col gap-2 ">
-    //         <label htmlFor="dob">Date of Birth</label>
-    //         <input
-    //           type="date"
-    //           id="dob"
-    //           name="dob"
-    //           value={registerData.dob}
-    //           onChange={handleChange}
-    //           className={inputClass}
-    //         />
-    //       </div>
-
-    //       <div className="flex flex-col gap-2 ">
-    //         <label htmlFor="password">Password</label>
-    //         <input
-    //           type="password"
-    //           id="password"
-    //           name="password"
-    //           value={registerData.password}
-    //           onChange={handleChange}
-    //           className={inputClass}
-    //         />
-    //       </div>
-
-    //       <div className="flex flex-col gap-2">
-    //         <label htmlFor="confirmPassword">Confirm Password</label>
-    //         <input
-    //           type="password"
-    //           id="confirmPassword"
-    //           name="confirmPassword"
-    //           value={registerData.confirmPassword}
-    //           onChange={handleChange}
-    //           className={inputClass}
-    //         />
-    //       </div>
-
-    //       {validateError && (
-    //         <p className=" text-red-500 text-sm col-span-2">
-    //           {validateError}
-    //         </p>
-    //       )}
-
-    //       <button
-    //         type="submit"
-    //         className="col-span-2 mt-2 bg-(--primary) text-white py-2 px-4 rounded hover:bg-(--accent)"
-    //       >
-    //         Register
-    //       </button>
-    //     </form>
-    //     <div className="mt-6 text-center space-y-2">
-    //       <p className="text-sm">
-    //         Already have an account?{" "}
-    //         <button
-    //           onClick={() => navigate("/login")}
-    //           className="text-(--primary) hover:underline font-semibold"
-    //         >
-    //           Login here
-    //         </button>
-    //       </p>
-    //       <p className="text-sm">
-    //         Having Trouble?{" "}
-    //         <button
-    //           onClick={() => navigate("/contact")}
-    //           className="text-(--primary) hover:underline font-semibold"
-    //         >
-    //           Contact Us
-    //         </button>
-    //       </p>
-    //     </div>
-    //   </div>
-    // </div>
-
     <div className="h-[90vh] bg-[url('/foodTable.webp')] flex items-center justify-end bg-cover bg-center p-10 md:pe-30">
       <div className="bg-white rounded-lg shadow-md px-10 py-6 max-w-md w-full overflow-y-auto max-h-[85vh]">
         <h1 className="text-3xl font-bold text-(--color-primary) mb-2 text-center">
@@ -227,7 +97,6 @@ const Register = () => {
           Join us as a Customer, Restaurant, or Rider
         </p>
 
-        {/* User Type Selection */}
         <div className="mb-6">
           <label className="block text-(--color-neutral) font-semibold mb-3">
             Register as:
@@ -254,9 +123,7 @@ const Register = () => {
           </div>
         </div>
 
-        {/* Registration Form */}
         <form onSubmit={handleSubmit}>
-          {/* Full Name */}
           <div className="mb-4">
             <input
               type="text"
@@ -277,7 +144,6 @@ const Register = () => {
             )}
           </div>
 
-          {/* Email */}
           <div className="mb-4">
             <input
               type="email"
@@ -298,7 +164,6 @@ const Register = () => {
             )}
           </div>
 
-          {/* Phone */}
           <div className="mb-4">
             <input
               type="number"
@@ -319,7 +184,6 @@ const Register = () => {
             )}
           </div>
 
-          {/* Gender & Date of Birth */}
           <div className="mb-4 grid grid-cols-2 gap-4">
             <div>
               <select
@@ -363,7 +227,6 @@ const Register = () => {
             </div>
           </div>
 
-          {/* Password */}
           <div className="mb-4">
             <input
               type="password"
@@ -384,7 +247,6 @@ const Register = () => {
             )}
           </div>
 
-          {/* Confirm Password */}
           <div className="mb-6">
             <input
               type="text"
@@ -427,7 +289,6 @@ const Register = () => {
             )}
           </div>
 
-          {/* Register Button */}
           <button
             type="submit"
             className="w-full py-3 bg-(--color-primary) text-white font-semibold rounded-md hover:bg-orange-700 transition-colors duration-300 mb-4"
@@ -436,7 +297,6 @@ const Register = () => {
           </button>
         </form>
 
-        {/* Login Link */}
         <p className="text-center text-(--color-secondary) text-sm">
           Already registered?{" "}
           <Link

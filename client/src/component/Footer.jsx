@@ -13,7 +13,6 @@ const Footer = () => {
   return (
     <footer className="bg-(--color-neutral) text-(--color-neutral-content) py-8">
       <div className="max-w-7xl mx-auto px-4">
-        {/* Footer Content Grid */}
 
         <p className="text-sm text-(--color-neutral-content) text-center mb-8">
           --- Your favorite food delivery platform connecting customers with
@@ -21,7 +20,6 @@ const Footer = () => {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-8">
-          {/* About Section */}
           <div>
             <img
               src={logoCircle}
@@ -29,8 +27,6 @@ const Footer = () => {
               className="mb-4 w-32 h-32"
             />
           </div>
-
-          {/* Quick Links */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
@@ -55,7 +51,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* For Restaurants */}
           <div>
             <h4 className="text-lg font-semibold mb-4">For Restaurants</h4>
             <ul className="space-y-2">
@@ -74,7 +69,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* For Riders */}
           <div>
             <h4 className="text-lg font-semibold mb-4">For Riders</h4>
             <ul className="space-y-2">
@@ -92,7 +86,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          {/* Feedback & Support */}
+         
           <div>
             <h4 className="text-lg font-semibold mb-4">Feedback & Support</h4>
             <ul className="space-y-2">
@@ -118,17 +112,14 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="border-t border(--color-neutral) my-8"></div>
 
-        {/* Bottom Section */}
         <div className="flex flex-col md:flex-row justify-between items-center">
-          {/* Copyright */}
+         
           <p className="text-sm text-(--color-neutral-content) mb-4 md:mb-0">
             &copy; {currentYear} Cravings. All rights reserved.
           </p>
 
-          {/* Legal Links */}
           <div className="flex gap-6">
             <Link to="/privacy-policy">
               <span className="text-sm text-(--color-neutral-content) hover:text-(--color-primary) transition-colors duration-200">
