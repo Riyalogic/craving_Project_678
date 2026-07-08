@@ -21,7 +21,7 @@ const [errors, setErrors] = useState({});
 
   const handleInputChange = (e) => {
     const {name, value,type,checked} = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: type === "checkbox" ? checked : value, }));
+    setFormData((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value, }));
   };
 
   const validateForm = (data) => {

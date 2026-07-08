@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
   try {
     const payload = { id: user._id };
 
-    const token = await jwt.sign(payload,process.env.JWT_SECRET, {
+    const token = await jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
 

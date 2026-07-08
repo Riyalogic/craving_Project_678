@@ -23,6 +23,7 @@ const App = () => {
           <Route path="/register/:userType" element={<Register />} />
           <Route path="/customer-dashboard" element={<CustomerDashboard />} />
         </Routes>
+        <Footer />
     </>
   );
 };

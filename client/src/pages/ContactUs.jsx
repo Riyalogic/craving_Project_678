@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import contactBg from "../assets/contactPage.jpg";
-import api from "../config/api.config";
+import api from "../config/api.config.js";
 
 const ContactUs = () => {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -17,8 +16,8 @@ const ContactUs = () => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const handleChange = async (e) => {
-    const { name, value } = e.target.name;
+  const handleInputChange = async (e) => {
+    const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 

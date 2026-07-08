@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logoLight from "../assets/transparentLogoLight.png";
 import { useAuth } from "../context/AuthContext";
 import { FaPowerOff } from "react-icons/fa";
-import api from "../config/api.config";
+import api from "../config/api.config.js";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
@@ -32,7 +32,7 @@ const Navbar = () => {
       sessionStorage.removeItem("cravingUser");
       setUser(null);
       setIsLogin(false);
-      setRole(null)
+      setRole(null);
       navigate("/");
     } catch (error) {
       toast.error(
@@ -61,7 +61,7 @@ const Navbar = () => {
               onClick={handleNavigate}
             >
               <img
-                src={user?.photo}
+                src={user?.photo.url}
                 alt={user?.fullName}
                 className="w-12 h-12 rounded-full object-cover object-top"
               />

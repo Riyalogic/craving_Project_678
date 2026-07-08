@@ -24,7 +24,7 @@ const Register = () => {
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
-      ...prevData,
+      ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
   };
@@ -60,10 +60,10 @@ const Register = () => {
     e.preventDefault();
     setErrors({});
     setLoading(true);
-    const validateErrors = validateForm(formData);
+    const validationErrors = validateForm(formData);
 
-    if (Object.keys(validateErrors).length > 0) {
-      setErrors(validateErrors);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
       setLoading(false);
       return;
     }
@@ -73,7 +73,7 @@ const Register = () => {
     try {
       const res = await api.post("/auth/register", {
         ...formData,
-        email: formData.email.toLocaleLowerCase(),
+        email: formData.email.toLowerCase(),
       });
       toast.success(res.data.message);
       navigate("/login");

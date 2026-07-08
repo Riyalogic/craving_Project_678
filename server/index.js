@@ -25,8 +25,6 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to my Craving Project" });
 });
 
-//default Error Handler
-
 app.use((err, req, res, next)  => {
   const ErrMessage = err.message || "Internal Server Error";
   const ErrStatusCode = err.statusCode || 500;

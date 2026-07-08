@@ -5,12 +5,15 @@ import Orders from "../../component/customerDashboard/CustomerOrders";
 import Setting from "../../component/customerDashboard/CustomerSetting";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import CustomerOverview from "../../component/customerDashboard/CustomerOverview";
+import CustomerOrders from "../../component/customerDashboard/CustomerOrders";
+import CustomerSetting from "../../component/customerDashboard/CustomerSetting";
 
 const CustomerDashboard = () => {
   const { isLogin } = useAuth();
   const navigate = useNavigate();
   const active = useLocation().state?.activeTab;
-  const [activeTab, setActiveTab] = React.useState(active || "Overview");
+  const [activeTab, setActiveTab] = React.useState(active || "overview");
 
   if (!isLogin) {
     return (
@@ -37,9 +40,9 @@ const CustomerDashboard = () => {
           <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
         <div className=" w-14/17 bg-(--color-base-100) p-4 rounded-lg shadow-md h-full">
-          {active === "overview" && <Overview />}
-          {active === "orders" && <Orders />}
-          {active === "settings" && <Setting />}
+          {activeTab === "overview" && <CustomerOverview />}
+          {activeTab === "orders" && <CustomerOrders />}
+          {activeTab === "settings" && <CustomerSetting />}
         </div>
       </div>
     </>
