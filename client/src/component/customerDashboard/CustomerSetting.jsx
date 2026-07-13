@@ -4,6 +4,7 @@ import { useAuth } from "../../context/AuthContext";
 import api from "../../config/api.config.js";
 import toast from "react-hot-toast";
 import { MdOutlineAddAPhoto } from "react-icons/md";
+import PasswordChangeModal from "../commonModals/PasswordChangeModal.jsx"
 
 const CustomerSetting = () => {
   const { user, setUser } = useAuth();
@@ -11,6 +12,7 @@ const CustomerSetting = () => {
   const [profilePic, setProfilePic] = useState(null);
   const [profilePicPreview, setProfilePicPreview] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isPasswordChangeModalOpen, setisPasswordChangeModalOpen] = useState(false);
 
   const [formData, setFormData] = useState({
     fullName: user?.fullName || "",

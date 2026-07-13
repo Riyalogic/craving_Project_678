@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
- export const genToken = async (user, res) => {
+export const genToken = async (user, res) => {
   try {
     const payload = { id: user._id };
 
@@ -17,6 +17,25 @@ import jwt from "jsonwebtoken";
 
     console.log(token);
   } catch (error) {
-    throw error ;
+    throw error;
+  }
+};
+
+export default genOTPToken = async (user, res) => {
+  try {
+    const payload = { id: user._id };
+
+    const token = await jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "10m",
+    });
+
+    res.cookie("kitkat", token, {
+      maxAge: 1000 * 60 * 10,
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+    });
+  } catch (error) {
+    throw next(error);
   }
 };

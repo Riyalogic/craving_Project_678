@@ -3,7 +3,6 @@ import { MdDashboard } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
 import { MdFavoriteBorder } from "react-icons/md";
 import { IoMdSettings } from "react-icons/io";
-import { IconBase } from "react-icons";
 
 const AdminSidebar = ({ activeTab, setActiveTab }) => {
   const mainTabs = [
