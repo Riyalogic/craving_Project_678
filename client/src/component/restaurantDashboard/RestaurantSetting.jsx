@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import RestaurantInformation from "./settings/RestaurantInformation";
+import ResturantCoreDetails from "./settings/ResturantCoreDetails";
+import RestaurantPhotos from "./settings/RestaurantPhotos";
 
 const RestaurantSetting = () => {
   const Tabs = [
@@ -8,23 +11,42 @@ const RestaurantSetting = () => {
   ];
   const [activeTab, setActiveTab] = useState("coreDetails");
 
+  const [isRestaurantOpen, setIsRestaurantOpen] = useState(true);
   return (
     <>
-      <div className=" p-3">
-        <div className=" border-b-2 border-(--color-secondary) flex gap-3">
+      <div className=" h-full flex flex-col">
+        <div className=" border-b-2 border-(--color-secondary)/50 flex justify-between mb-2 w-full">
+        <div className=" flex gap-3">
           {Tabs.map((tab, idx) => (
-            <>
+               <>
               <div
                 key={idx}
-                className={`p-2 uppercase ${activeTab === tab.id ? " text-(--color-primary)"}`}
-                onClick={() => {} }
-              >
-                {tab.label}
+                className={`p-2 uppercase cursor-pointer ${activeTab === tab.id ? "text-(--color-primary) border-b-3 border-(--color-primary)" : ""}`}
+                  onClick={() => setActiveTab(tab.id)}
+                >
+                  {tab.label}
               </div>
             </>
           ))}
         </div>
-      </div>
+          
+           <div className="flex items-center gap-3">
+            <label className="w-22 text-xs font-semibold">Currently Open</label>
+            <input
+              type="checkbox"
+              name="isOpen"
+              checked={isRestaurantOpen}
+              onChange={() => setIsRestaurantOpen(!isRestaurantOpen)}
+              className=" w-4 h-4 accent-(--color-primary)"
+            />
+          </div>
+        </div>
+         <div className="h-full rounded-lg bg-(--color-base-200) p-2">
+          {activeTab === "information" && <RestaurantInformation />}
+          {activeTab === "coreDetails" && <ResturantCoreDetails />}
+          {activeTab === "photos" && <RestaurantPhotos />}
+        </div>             
+        </div>
     </>
   );
 };

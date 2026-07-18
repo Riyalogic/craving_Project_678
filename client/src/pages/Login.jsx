@@ -4,24 +4,29 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import api from "../config/api.config.js";
 import { useAuth } from "../context/AuthContext";
+import ForgotPasswordModal from "../component/commonModals/ForgotPasswordModel.jsx";
 
- const Login = () => {
+const Login = () => {
   const navigate = useNavigate();
-   const { setUser, setIsLogin, setRole } = useAuth();
+  const { setUser, setIsLogin, setRole } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-     rememberMe: false,
+    rememberMe: false,
   });
 
-const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-
+  const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
+    useState(false);
 
   const handleInputChange = (e) => {
-    const {name, value,type,checked} = e.target;
-    setFormData((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value, }));
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
 
   const validateForm = (data) => {
@@ -35,7 +40,7 @@ const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-const validationErrors = validateForm(formData);
+    const validationErrors = validateForm(formData);
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -46,7 +51,7 @@ const validationErrors = validateForm(formData);
     console.log("Login submitted:", formData);
 
     try {
-      const res = await api.post("/auth/login",{
+      const res = await api.post("/auth/login", {
         email: formData.email.toLowerCase(),
         password: formData.password,
       });
@@ -74,7 +79,7 @@ const validationErrors = validateForm(formData);
     }
   };
   return (
-      <div className="h-[90vh] bg-[url('/foodTable.webp')] flex items-center justify-start bg-cover bg-center p-10 md:ps-30">
+    <div className="h-[90vh] bg-[url('/foodTable.webp')] flex items-center justify-start bg-cover bg-center p-10 md:ps-30">
       <div className="bg-white rounded-lg shadow-md px-10 py-6 max-w-md w-full">
         <h1 className="text-3xl font-bold text-(--color-primary) mb-2 text-center">
           Welcome Back
