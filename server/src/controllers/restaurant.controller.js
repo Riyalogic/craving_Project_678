@@ -2,8 +2,8 @@ import Restaurant from "../models/restaurant.model.js";
 import {
   uploadMultipleImages,
   deleteMultipleImages,
-  UploadSingleImage,
-  deleteSingleImage,
+  uploadSingleImages,
+  deleteSingleImages,
 } from "../utils/image.service.js";
 
 

@@ -4,7 +4,7 @@ import { genToken } from "../utils/auth.service.js";
 import OTP from "../models/otp.model.js";
 
 import { genOTPToken } from "../utils/auth.service.js";
-import { sendOTPEmail } from "../utils/auth.service.js";
+import { sendOTPEmail } from "../utils/email.service.js";
 
 export const RegisterUser = async (req, res, next) => {
   try {
@@ -116,7 +116,7 @@ export const SendOtp = async (req, res, next) => {
       return next(error);
     }
 
-    const existingUser = await User.findOne(email);
+    const existingUser = await User.findOne({ email });
     if (!existingUser) {
       const error = new Error("Email is Required");
       error.statusCode = 404;

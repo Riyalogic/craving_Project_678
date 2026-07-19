@@ -21,7 +21,7 @@ export const genToken = async (user, res) => {
   }
 };
 
-export default genOTPToken = async (user, res) => {
+export const genOTPToken = async (user, res) => {
   try {
     const payload = { id: user._id };
 

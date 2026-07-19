@@ -22,6 +22,16 @@ const UserData = [
     phone: "9876543210",
     photo: { url: "https://placehold.co/600x400?text=R", publicId: null },
   },
+  {
+    fullName: "Rider1",
+    email: "Rider1@gmail.com",
+    password: await bcrypt.hash("Rider@123", 10),
+    dob: "2000-01-01",
+    gender: "other",
+    userType: "rider",
+    phone: "9876543210",
+    photo: { url: "https://placehold.co/600x400?text=R", publicId: null },
+  },
 ];
 
 const userSeed = async () => {
@@ -61,7 +71,7 @@ const userSeed = async () => {
 
     console.log("Creating New Rider");
 
-    const newCustomer = await User.create(UserData[2]);
+    const newRider = await User.create(UserData[2]);
     console.log("Rider Created Successfully");
   } catch (error) {
     console.log("User Not Created");

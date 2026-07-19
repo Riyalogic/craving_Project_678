@@ -21,7 +21,6 @@ export const sendOTPEmail = async (email, newOTP) => {
 
                 <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
 
-                    <!-- Header -->
                     <tr>
                         <td align="center" style="background:#ff6b35;padding:35px 25px;">
 
@@ -39,7 +38,6 @@ export const sendOTPEmail = async (email, newOTP) => {
                         </td>
                     </tr>
 
-                    <!-- Body -->
                     <tr>
                         <td style="padding:40px 35px;">
 
@@ -57,7 +55,6 @@ export const sendOTPEmail = async (email, newOTP) => {
                                 Use the One-Time Password (OTP) below to continue.
                             </p>
 
-                            <!-- OTP Box -->
                             <table width="100%" cellpadding="0" cellspacing="0" border="0">
                                 <tr>
                                     <td align="center">
@@ -90,14 +87,12 @@ export const sendOTPEmail = async (email, newOTP) => {
                         </td>
                     </tr>
 
-                    <!-- Divider -->
                     <tr>
                         <td style="padding:0 35px;">
                             <hr style="border:none;border-top:1px solid #eeeeee;margin:0;">
                         </td>
                     </tr>
 
-                    <!-- Footer -->
                     <tr>
                         <td align="center" style="padding:30px 35px;background:#fafafa;">
 
@@ -120,13 +115,10 @@ export const sendOTPEmail = async (email, newOTP) => {
 
                         </td>
                     </tr>
-
                 </table>
-
             </td>
         </tr>
     </table>
-
 </body>
 </html>
     `;
