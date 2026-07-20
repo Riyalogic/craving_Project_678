@@ -10,6 +10,8 @@ const RestaurantSidebar = ({ activeTab, setActiveTab }) => {
     { name: "Orders", value: "orders", icon: <FaShoppingCart /> },
   ];
 
+   const settingsTab = { name: "Settings", value: "settings", icon: <IoMdSettings /> };
+
   const renderTab = (tab) => (
     <li
       key={tab.value}

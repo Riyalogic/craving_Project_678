@@ -1,9 +1,10 @@
 import React, { useState, useEffect, use } from "react";
 import { MdEdit } from "react-icons/md";
+import { MdOutlineLockReset } from "react-icons/md";
 import { useAuth } from "../../context/AuthContext";
 import api from "../../config/api.config.js";
 import toast from "react-hot-toast";
-import { MdOutlineAddAPhoto } from "react-icons";
+import { MdOutlineAddAPhoto } from "react-icons/md";
 import PasswordChangeModal from "../commonModals/PasswordChangeModal";
 
 const AdminSetting = () => {
@@ -60,7 +61,7 @@ const AdminSetting = () => {
     setEditngProfile(false);
   };
 
-  const handleProfileChange = (e) => {
+  const handleProfilePicChange = (e) => {
     const file = e.target.files[0];
     setProfilePicPreview(URL.createObjectURL(file));
     setProfilePic(file);
@@ -97,7 +98,7 @@ const AdminSetting = () => {
                   {isLoading ? "Saving..." : "Save Changes"}
                 </button>
                 <button
-                  onClick={handleChangeProfile}
+                  onClick={handleCancelProfile}
                   className="flex items-center gap-2 bg-(--color-primary) text-(--color-primary-content) px-3 py-1 rounded text-sm"
                   disabled={isLoading}
                 >

@@ -6,8 +6,8 @@ import { IoMdSettings } from "react-icons/io";
 
 const AdminSidebar = ({ activeTab, setActiveTab }) => {
   const mainTabs = [
-    { name: "Overview", icon: <MdDashboard /> },
-    { name: "Orders", icon: <FaShoppingCart /> },
+    { name: "Overview",value:"overview", icon: <MdDashboard /> },
+    { name: "Orders",value:"orders", icon: <FaShoppingCart /> },
   ];
 
   const settingTab = {

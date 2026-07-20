@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import RestaurantInformation from "./settings/RestaurantInformation";
-import ResturantCoreDetails from "./settings/ResturantCoreDetails";
-import RestaurantPhotos from "./settings/RestaurantPhotos";
+import RestaurantInformation from "./settings/RestaurantInformation.jsx";
+import RestaurantCoreDetails from "./settings/RestaurantCoreDetails.jsx";
+import RestaurantPhotos from "./settings/RestaurantPhotos.jsx";
 
 const RestaurantSetting = () => {
   const Tabs = [
@@ -43,7 +43,7 @@ const RestaurantSetting = () => {
         </div>
          <div className="h-full rounded-lg bg-(--color-base-200) p-2">
           {activeTab === "information" && <RestaurantInformation />}
-          {activeTab === "coreDetails" && <ResturantCoreDetails />}
+          {activeTab === "coreDetails" && <RestaurantCoreDetails />}
           {activeTab === "photos" && <RestaurantPhotos />}
         </div>             
         </div>

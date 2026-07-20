@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { MdEdit } from "react-icons/md";
 import { useAuth } from "../../../context/AuthContext";
-import api from "../../../config/api.config";
+import api from "../../../config/api.config.js";
 import toast from "react-hot-toast";
 import { MdOutlineAddAPhoto, MdOutlineLockReset } from "react-icons/md";
 import PasswordChangeModal from "../../commonModals/PasswordChangeModal";
@@ -134,7 +134,6 @@ const ResturantCoreDetails = () => {
   return (
     <>
       <div className="overflow-y-auto h-full p-2 space-y-2">
-        {/* Restaurant Information Section */}
         {isLoadingRestaurant ? (
           <div className="flex flex-col justify-center items-center h-64">
             <img src={RunningLoader} alt="Loading..." className="w-40 h-40" />
@@ -151,7 +150,6 @@ const ResturantCoreDetails = () => {
         ) : (
           <>
             <div className="flex flex-col gap-2 h-full">
-              {/* Address Information */}
               <div className="bg-(--color-base-100) rounded-lg p-3">
                 <div className="flex justify-between items-center border-b border-(--color-secondary) pb-2 mb-2">
                   <div className="flex items-center gap-3">
