@@ -70,8 +70,8 @@ const PasswordChangeModal = ({ open, onClose }) => {
                 </label>
                 <input
                   type="password"
-                  id="password"
-                  name="password"
+                  id="oldPassword"
+                  name="oldPassword"
                   value={formData.oldPassword}
                   onChange={handleChange}
                   className="border border-(--color-secondary) rounded px-3 py-2 disabled:bg-(--color-secondary) disabled:text-(--color-secondary-content)"

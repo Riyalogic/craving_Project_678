@@ -1,4 +1,4 @@
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect} from "react";
 import { MdEdit } from "react-icons/md";
 import { MdOutlineLockReset } from "react-icons/md";
 import { useAuth } from "../../context/AuthContext";
@@ -9,7 +9,7 @@ import PasswordChangeModal from "../commonModals/PasswordChangeModal";
 
 const AdminSetting = () => {
   const { user, setUser } = useAuth();
-  const [editngProfile, setEditngProfile] = useState(false);
+  const [editingProfile, setEditingProfile] = useState(false);
   const [profilePic, setProfilePic] = useState(null);
   const [profilePicPreview, setProfilePicPreview] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -73,10 +73,10 @@ const AdminSetting = () => {
         <div className=" bg-(-color-base-200) rounded-lg p-6">
           <div className=" flex justify-between items-center mb-4">
             <h3 className=" text-lg font-semibold">Profile Information</h3>
-            {!editngProfile ? (
+            {!editingProfile ? (
               <div className=" flex gap-3">
                 <button
-                  onClick={() => setEditngProfile(true)}
+                  onClick={() => setEditingProfile(true)}
                   className="flex items-center gap-2 bg-(--color-primary) text-(--color-primary-content) px-3 py-1 rounded text-sm"
                 >
                   <MdEdit /> Edit
@@ -119,7 +119,7 @@ const AdminSetting = () => {
                   />
                 </div>
 
-                {editngProfile && (
+                {editingProfile && (
                   <div
                     className="absolute cursor-pointer bottom-1 right-1 border p-2 rounded-full w-fit bg-(--color-base-200)"
                     title="Change Photo"
@@ -133,7 +133,7 @@ const AdminSetting = () => {
                       name="profilePic"
                       id="profilePic"
                       className=" hidden"
-                      onChange={handleProfileChange}
+                      onChange={handleProfilePicChange}
                     />
                   </div>
                 )}

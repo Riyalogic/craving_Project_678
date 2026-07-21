@@ -10,7 +10,7 @@ const RiderSidebar = ({ activeTab, setActiveTab }) => {
     { name: "Orders", value: "orders", icon: <FaShoppingCart /> },
   ];
 
-  const settingTab = {
+  const settingsTab = {
     name: "Settings",
     value: "settings",
     icon: <IoMdSettings />,

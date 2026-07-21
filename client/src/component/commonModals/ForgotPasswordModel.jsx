@@ -44,6 +44,7 @@ const ForgotPasswordModal = ({ open, onClose }) => {
         const res = await api.post("/auth/verify-otp", formData);
         toast.success(res.data.message);
         setIsOtpVerified(true);
+        handleCloseModal();
       }
       if (isOtpSent && isOtpVerified) {
         const res = await api.post("/auth/reset-password", formData);

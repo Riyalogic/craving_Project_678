@@ -10,9 +10,9 @@ const AdminSidebar = ({ activeTab, setActiveTab }) => {
     { name: "Orders",value:"orders", icon: <FaShoppingCart /> },
   ];
 
-  const settingTab = {
+  const settingsTab = {
     name: "Settings",
-    value: "Settings",
+    value: "settings",
     icon: <IoMdSettings />,
   };
 
@@ -33,7 +33,7 @@ const AdminSidebar = ({ activeTab, setActiveTab }) => {
           {mainTabs.map((tab) => renderTab(tab))}
         </ul>
         <ul className=" space-y-4 border-t border-(--color-secondary) py-2">
-          {renderTab(settingTab)}
+          {renderTab(settingsTab)}
         </ul>
       </div>
     </>

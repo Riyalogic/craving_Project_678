@@ -53,18 +53,3 @@ const RestaurantSetting = () => {
 
 export default RestaurantSetting;
 
-// import React,{useState, useEffect} from "react";
-// import { MdEdit } from "react-icons/md";
-// import { useAuth } from "../../context/AuthContext";
-// import api from "../../config/api.config";
-// import toast from "react-hot-toast";
-// import { MdOutlineAddAPhoto, MdOutlineLockReset } from "react-icons/md";
-// import PasswordChangeModal from "../commonModals/PasswordChangeModal";
-// import RunningLoader from "../../assets/runningLoader.gif";
-
-// const RestaurantSetting = () => {
-//     const { user, setUser} = userAuth();
-
-//     const [isLoading, setisLoading] = useState(false);
-
-// }

@@ -40,8 +40,6 @@ export const RestaurantGetData = async (req,res,next) => {
 export const restaurantUpdateProfile = async (req, res, next) => {
   try {
     const currentUser = req.user;
-    const managerId = req.query.id;
-
     const restaurantDataFromFE = req.body;
     const coverImageFromFE = req.files?.coverImage;
     const restaurantImageFromFE = req.files?.restaurantImage;

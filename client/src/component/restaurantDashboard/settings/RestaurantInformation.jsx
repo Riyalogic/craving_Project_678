@@ -8,7 +8,7 @@ import PasswordChangeModal from "../../commonModals/PasswordChangeModal";
 import RunningLoader from "../../../assets/runningLoader.gif";
 
 const RestaurantInformation = () => {
-  const { user, seetUser } = useAuth();
+  const { user, setUser } = useAuth();
 
   const [isLoading, setIsLoading] = useState(false);
   const [isPasswordChangeModalOpen, setIsPasswordChangeModalOpen] =

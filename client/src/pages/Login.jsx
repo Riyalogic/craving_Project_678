@@ -60,8 +60,9 @@ const Login = () => {
       setUser(res.data.data);
       setIsLogin(true);
       setRole(res.data.data.userType);
-      res.data.data.userType === "restaurant" &&
-        navigate("/restaurant-dashboard");
+      // console.log(res.data.data.userType);
+      
+      res.data.data.userType === "restaurant" && navigate("/restaurant-dashboard");
 
       res.data.data.userType === "rider" && navigate("/rider-dashboard");
 

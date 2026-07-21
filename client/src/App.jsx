@@ -11,6 +11,7 @@ import ContactUs from "./pages/ContactUs";
 import RestaurantDashboard from "./pages/dashboard/RestaurantDashboard";
 import RiderDashboard from "./pages/dashboard/RiderDashboard";
 import AdminDashboard from "./pages/dashboard/AdminDashboard";
+import Test from "./pages/Test";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/restaurant-dashboard" element={<RestaurantDashboard />} />
         <Route path="/rider-dashboard" element={<RiderDashboard />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
       <Footer />
     </>

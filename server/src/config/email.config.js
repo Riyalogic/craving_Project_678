@@ -40,9 +40,3 @@ const sendEmail = async (to, String, message) => {
 
 export default sendEmail;
 
-// sendEmail(
-//   "rajvardhan@ricr.in",
-//   "test Email",
-//   `<h1 style='color:blue;'>Test Message</h1>
-//   <p style='color:red;'>Batch 6</p>`,
-// );
