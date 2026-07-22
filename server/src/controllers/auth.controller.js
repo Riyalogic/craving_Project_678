@@ -146,7 +146,7 @@ export const SendOtp = async (req, res, next) => {
   }
 };
 
-export const VerifyOTP = async (req, res, next) => {
+export const VerifyOtp = async (req, res, next) => {
   try {
     const { email,otp} = req.body;
     if (!email) {
@@ -190,13 +190,13 @@ export const ResetPassword = async( req, res, next) => {
  try {
    const {newPassword} = req.body;
 
-  const currentUSer = req.user;
+  const currentUser = req.user;
 
   const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-  currentUSer.password = hashedPassword;
+  currentUser.password = hashedPassword;
 
-  await currentUSer.save();
+  await currentUser.save();
 
   res.status(200).json({message: "Password Changed"});
 

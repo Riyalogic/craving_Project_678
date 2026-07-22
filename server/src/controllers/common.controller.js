@@ -65,11 +65,11 @@ export const UpdateUserPassword = async (req, res, next) => {
       return next(error);
     }
 
-    const currentUSer = req.user;
+    const currentUser = req.user;
 
     const isPasswordMatch = await bcrypt.compare(
       oldPassword,
-      currentUSer.password,
+      currentUser.password,
     );
     if (!isPasswordMatch) {
       const error = new Error("Old password is incorrect");
@@ -78,8 +78,8 @@ export const UpdateUserPassword = async (req, res, next) => {
     }
 
     const hashedPassword = await bcrypt.hash(newPassword, 10);
-    currentUSer.password = hashedPassword;
-    await currentUSer.save();
+    currentUser.password = hashedPassword;
+    await currentUser.save();
 
     await new Promise((resolve) => setTimeout(resolve, 3000));
 
