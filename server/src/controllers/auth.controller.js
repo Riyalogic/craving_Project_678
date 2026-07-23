@@ -27,12 +27,15 @@ export const RegisterUser = async (req, res, next) => {
     }
 
     const existingUser = await User.findOne({ email });
+    
     if (existingUser) {
       // res.status(409).json({ message: "Email Already Registered" });
       const error = new Error("Email already Registered");
       error.statusCode = 409;
       return next(error);
     }
+
+    
 
     const photoURL = `https://placehold.co/600x400?text=${fullName.charAt(0).toUpperCase()}`;
 
@@ -60,6 +63,7 @@ export const RegisterUser = async (req, res, next) => {
 };
 
 export const LoginUser = async (req, res, next) => {
+  
   try {
     const { email, password } = req.body;
 

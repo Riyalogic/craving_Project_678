@@ -8,11 +8,11 @@ const RestaurantSchema = mongoose.Schema(
             required: true,
         },
         restaurantName: { type: String, required: true },
-          address: { type: String, required: true },
-          city: { type: String, required: true },
-          state: { type: String, required: true },
-          pincode: { type: String, required: true },
-          country: { type: String, required: true },
+          address: { type: String, default: "" },
+          city: { type: String, default: "" },
+          state: { type: String, default: "" },
+          pincode: { type: String, default: "" },
+          country: { type: String, default: "" },
           geoLocation: {
             type: {
                 lat: {
@@ -23,10 +23,14 @@ const RestaurantSchema = mongoose.Schema(
                 },
             },
           },
+           legal: {
+      type: {
+        legalName: { type: String, required: true },
+        companyType: { type: String, required: true },
+      },
+    },
           documents: {
             type: {
-                legalName: { type: String, required: true},
-                companyType: { type: String, required: true},
                 gstCertificate: { type: String, required: true},
                 fssaiCertificate: { type: String, required: true},
                 panCard: { type: String, required: true},
@@ -42,7 +46,7 @@ const RestaurantSchema = mongoose.Schema(
           contactDetails: {
             type: {
                 email: { type: String, required: true},
-                PaymentMethodChangeEvent: { type: String, required: true},
+                phone: { type: String, required: true},
             },
           },
           servingHours: {
@@ -69,14 +73,12 @@ const RestaurantSchema = mongoose.Schema(
                     publicId: {type: String, required: true},
                 },
             ],
-            required: true,
           },
           coverImage: {
             type: {
                 url: { type: String, required: true},
                 publicId: { type: String, required: true},
             },
-            required: true,
           },
           description: { type: String, required: true},
           restaurantType: {

@@ -5,7 +5,7 @@ import {
   RegisterUser,
   SendOtp,
   ResetPassword,
-  VerifyOTP,
+  VerifyOtp,
 } from "../controllers/auth.controller.js";
 
 import { OTPAuthProtect } from "../middlewares/auth.middleware.js";
@@ -17,7 +17,7 @@ router.post("/login", LoginUser);
 router.get("/logout", LogoutUser);
 
 router.post("/send-otp", SendOtp);
-router.post("/verify-otp", VerifyOTP);
+router.post("/verify-otp", VerifyOtp);
 router.post("/reset-password", OTPAuthProtect, ResetPassword);
 
 export default router;

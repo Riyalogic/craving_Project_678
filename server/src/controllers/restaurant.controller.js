@@ -40,7 +40,7 @@ export const RestaurantGetData = async (req, res, next) => {
     next();
   }
 };
-export const restaurantUpdateProfile = async (req, res, next) => {
+export const RestaurantUpdateProfile = async (req, res, next) => {
   try {
     const currentUser = req.user;
     const restaurantDataFromFE = req.body;
@@ -63,7 +63,7 @@ export const restaurantUpdateProfile = async (req, res, next) => {
 
     if (!existingRestaurant) {
       if (coverImageFromFE) {
-        const coverImage = await UploadSingleImage(
+        const coverImage = await uploadSingleImage(
           coverImageFromFE,
           `restaurant/${currentUser.phone}/coverPhoto`,
         );
@@ -90,7 +90,7 @@ export const restaurantUpdateProfile = async (req, res, next) => {
       });
     } else {
       if (coverImageFromFE) {
-        await deleteSingleImage(existingRestaurant.coverImage);
+        await deleteSingleImages(existingRestaurant.coverImage);
 
         const coverImage = await UploadSingleImage(
           coverImageFromFE,
