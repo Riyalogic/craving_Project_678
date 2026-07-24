@@ -27,7 +27,7 @@ const Setting = () => {
     console.log(payLoad);
 
     try {
-      const res = await api.put("/user/edit-profile", payLoad);
+      const res = await api.put("/common/edit-profile", payLoad);
       setUser(res.data.data);
       toast.success(res.data.message);
     } catch (error) {
