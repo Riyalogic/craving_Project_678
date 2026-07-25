@@ -5,6 +5,7 @@ import {
   uploadSingleImages,
   deleteSingleImages,
 } from "../utils/image.service.js";
+import Menu from "../models/menu.model.js";
 
 export const RestaurantGetData = async (req, res, next) => {
   try {
@@ -36,7 +37,7 @@ export const RestaurantGetData = async (req, res, next) => {
       });
     }
   } catch (error) {
-    console.log(error.message);
+    console.log("RestaurantAddMenuItem error:", error);
     next();
   }
 };
@@ -125,7 +126,7 @@ export const RestaurantUpdateProfile = async (req, res, next) => {
   }
 };
 
-      export const RestaurantUpdateInfo = async (req, res, next) => {
+ export const RestaurantUpdateInfo = async (req, res, next) => {
   try {
     const currentUser = req.user;
     const {
@@ -249,6 +250,119 @@ await existingRestaurant.save();
       message: "Legal information updated successfully",
       data: existingRestaurant,
     });
+  } catch (error) {
+    console.log(error.message);
+    next();
+  }
+};
+export const RestaurantAddMenuItem = async (req, res, next) => {
+  try {
+    const currentUser = req.user;
+    const {
+      itemName,
+      description,
+      price,
+      category,
+      foodType,
+      status,
+      isTopRated,
+      isRecommended,
+      isNew,
+      isDeleted,
+    } = req.body;
+    const itemImageFromFE = req.file;
+    console.log("Received data:", {
+      itemName,
+      description,
+      price,
+      category,
+      foodType,
+      status,
+      isTopRated,
+      isRecommended,
+      isNew,
+      isDeleted,
+      itemImageFromFE,
+    });
+    if (
+      !itemName ||
+      !description ||
+      !price ||
+      !category ||
+      !foodType ||
+      !status
+    ) {
+      const error = new Error("All fields are required");
+      error.statusCode = 400;
+      return next(error);
+    }
+    if (!itemImageFromFE) {
+      const error = new Error("Item image is required");
+      error.statusCode = 400;
+      return next(error);
+    }
+    const existingRestaurant = await Restaurant.findOne({
+      managerId: currentUser._id,
+    });
+    if (!existingRestaurant) {
+      const error = new Error("Restaurant Not Found");
+      error.statusCode = 404;
+      return next(error);
+    }
+    console.log("Lets UploadImage");
+    const itemImage = await uploadSingleImage(
+      itemImageFromFE,
+      `restaurant/${currentUser.phone}/menuItems`,
+    );
+    console.log("itemImage after upload:", itemImage);
+    const existingMenuItem = await Menu.findOne({
+      restaurantId: existingRestaurant._id,
+    });
+    console.log("Lets Add the Menu");
+    if (existingMenuItem) {
+      existingMenuItem.menuItems.push({
+        itemName,
+        description,
+        price,
+        category,
+        foodType,
+        status,
+        isTopRated,
+        isRecommended,
+        isNew,
+        isDeleted,
+        image: itemImage,
+      });
+      console.log("Existing Menu Item after push");
+      await existingMenuItem.save();
+      return res.status(200).json({
+        message: "Menu item added successfully",
+        data: existingMenuItem,
+      });
+    } else {
+      const newItem = {
+        itemName,
+        description,
+        price,
+        category,
+        foodType,
+        status,
+        isTopRated,
+        isRecommended,
+        isNew,
+        isDeleted,
+        image: itemImage,
+      };
+      console.log("New Item to be added");
+      const newMenuItem = await Menu.create({
+        restaurantId: existingRestaurant._id,
+        menuItems: [newItem],
+      });
+      return res.status(201).json({
+        message: "Menu item added successfully",
+        data: newMenuItem,
+      });
+    }
   } catch (error) {
     console.log(error.message);
     next();
