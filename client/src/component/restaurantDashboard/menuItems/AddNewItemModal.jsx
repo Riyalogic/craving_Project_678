@@ -2,6 +2,7 @@ import React from "react";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import api from "../../../config/api.config.js";
 import toast from "react-hot-toast";
+import { FaRegFileImage } from "react-icons/fa";
 
 const itemCategories = [
   "Appetizer",
@@ -37,7 +38,7 @@ const foodTypes = [
   "Other",
 ];
 
-const AddNewItemModal = ({ isOpen, onClose }) => {
+const AddNewItemModal = ({ isOpen, onClose, onActionSuccess }) => {
   const [newItemFormData, setNewItemFormData] = React.useState({
     itemName: "",
     description: "",
@@ -86,6 +87,10 @@ const AddNewItemModal = ({ isOpen, onClose }) => {
 
       const res = await api.post("/restaurant/add-menu-item", formData);
       toast.success(res.data.message);
+      if (onActionSuccess) {
+        await onActionSuccess();
+      }
+      handleOnClose();
     } catch (error) {
       toast.error(
         error.response?.data?.message ||
@@ -96,6 +101,20 @@ const AddNewItemModal = ({ isOpen, onClose }) => {
     }
   };
   const handleOnClose = () => {
+    setNewItemFormData({
+      itemName: "",
+      description: "",
+      price: "",
+      category: "",
+      foodType: "",
+      status: "",
+      isTopRated: false,
+      isRecommended: false,
+      isNew: true,
+      isDeleted: false,
+    })
+    setPreviewImage(null);
+    setItemImage(null);
     onClose();
   };
 
@@ -107,7 +126,7 @@ const AddNewItemModal = ({ isOpen, onClose }) => {
           <header className="flex justify-between items-center border-b border-(--color-secondary) pb-2 mb-4">
             <h2 className="text-lg font-semibold">Add New Item</h2>
             <button
-              className="text-red-300 hover:text-red-500"
+              className="text-red-300 hover:text-red-500" 
               onClick={handleOnClose}
             >
               <IoMdCloseCircleOutline size={24} />
@@ -117,19 +136,18 @@ const AddNewItemModal = ({ isOpen, onClose }) => {
           <main>
             <form className=" space-y-4">
               <div className="grid grid-cols-3 gap-4">
-                <div className="col-span-1 space-x-0 space-y-2">
-                  <label className="block mb-1 font-medium" htmlFor="itemImage">
-                    Item Image
-                  </label>
-                  {previewImage && (
-                    <div className="col-span-1">
-                      <img
-                        src={previewImage}
-                        alt="Preview"
-                        className="w-full h-auto rounded"
-                      />
-                    </div>
-                  )}
+                <div className=" flex justify-between items-center">
+                  <div className=" h-52 w-52 mx-auto border-2 border-(--color-primary) rounded overflow-hidden">
+                    {previewImage ? (
+                      <img src={previewImage} alt="preview"  className=" h-full w-full object-cover"/>
+                    ) : (
+                      <label htmlFor="itemImage" className=" cursor-pointer flex flex-col items-center justify-center h-full text-(--color-primary)/60 hover:text-(--color-Primary) text-center">
+                        <FaRegFileImage size={32} className="mb-2" />
+                        <span>Click here to upload an image</span>
+                      </label>
+                    )}
+                  </div>
+                </div>
                   <input
                     type="file"
                     id="itemImage"
@@ -139,7 +157,7 @@ const AddNewItemModal = ({ isOpen, onClose }) => {
                       setItemImage(file);
                       setPreviewImage(URL.createObjectURL(file));
                     }}
-                    className="w-full border border-(--color-primary) text-(--color-primary) rounded px-3 py-2"
+                    className=" hidden"
                   />
                 </div>
                 <div className="space-y-4 col-span-2">
@@ -246,22 +264,23 @@ const AddNewItemModal = ({ isOpen, onClose }) => {
                     className=" w-full border border-gray-300 rounded px-3 py-2"
                   />
                 </div>
-              </div>
             </form>
           </main>
 
           <footer className="flex justify-between border-t border-(--color-secondary) pt-2 mt-4">
             <button
-              className="bg-gray-300 text-gray-700 px-4 py-2 rounded mr-2"
+              className="bg-(--color-primary) disabled:bg-(--color-secondary)/60 text-(--color-primary) px-4 py-2 rounded mr-2"
               onClick={handleOnClose}
+              disabled={isLoading}
             >
               Cancel
             </button>
             <button
-              className="bg-(--color-primary) text-(--color-primary-content) px-4 py-2 rounded"
+              className="bg-(--color-primary) disabled:bg-(--color-primary)/60 text-(--color-primary-content) px-4 py-2 rounded"
               onClick={handleAddNewItem}
+              disabled={isLoading}
             >
-              Add Item
+            {isLoading ? "Adding..." : "Add Item"}
             </button>
           </footer>
         </div>
