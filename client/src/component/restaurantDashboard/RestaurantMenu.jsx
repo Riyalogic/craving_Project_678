@@ -91,150 +91,155 @@ if (isLoading) {
             <div>Controls</div>
             <div>Actions</div>
           </div>
-          <div className=" overflow-y-auto max-h-[65vh]">
-              {menuItems.length === 0 ? (
-                <div className=" text-center py-10 text-(--color-primary)/70">
-                  No menu items found.
-                </div>
-              ) : (
-          <>
-            {menuItems.map((item, index) => (
-              <div
-                key={index}
-                className="grid grid-cols-7 gap-4 border-b border-(--color-secondary) py-2 items-center"
-              >
-                <div className="col-span-2 flex items-center gap-4">
-                  <div>
-                    <img
-                      src={item.image.url}
-                      alt={item.itemName}
-                      className="w-16 h-16 object-cover rounded"
-                    />
-                  </div>
-                  <div className="w-full">
-                    <div>{item.itemName}</div>
-                    <div className="text-xs text-gray-500">
-                      {item.description}
+          <div className="overflow-y-auto max-h-[65vh]">
+            {menuItems.length === 0 ? (
+              <div className="text-center py-10 text-(--color-primary)/70">
+                No menu items found.
+              </div>
+            ) : (
+              <>
+                {menuItems.map((item, index) => (
+                  <div
+                    key={item._id || index}
+                    className="grid grid-cols-7 gap-4 border-b border-(--color-secondary) py-2 items-center"
+                  >
+                    <div className="col-span-2 flex items-center gap-4">
+                      <div>
+                        <img
+                          src={item.image.url}
+                          alt={item.itemName}
+                          className="w-16 h-16 object-cover rounded"
+                        />
+                      </div>
+                      <div className="w-full">
+                        <div>{item.itemName}</div>
+                        <div className="text-xs text-gray-500">
+                          {item.description}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-center">₹ {item.price.toFixed(2)}</div>
+                    <div className="">
+                      <div>{item.category}</div>
+                      <div className="text-sm">{item.foodType}</div>
+                    </div>
+                    <div>
+                      <div className="relative inline-flex items-center">
+                        <select
+                          value={item.status}
+                          className={`appearance-none rounded-md pl-3 pr-8 py-1.5 text-xs font-semibold tracking-wide transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-(--color-primary) ${
+                            statusChipStyles[item.status]
+                          }`}
+                          onChange={(e) => {
+                            handleStatusChange(item._id, e.target.value);
+                          }}
+                        >
+                          <option value="available">
+                            {statusLabels.available}
+                          </option>
+                          <option value="unavailable">
+                            {statusLabels.unavailable}
+                          </option>
+                          <option value="discontinued">
+                            {statusLabels.discontinued}
+                          </option>
+                        </select>
+                        <LuChevronDown className="pointer-events-none absolute right-2 text-xs opacity-70" />
+                      </div>
+                    </div>
+
+                    <div className="flex gap-2">
+                      <button
+                        className={`rounded flex items-center justify-center ${
+                          item.isTopRated
+                            ? " text-(--color-primary)"
+                            : "text-(--color-secondary)"
+                        }`}
+                        title={
+                          item.isTopRated ? "Top Rated" : "Mark as Top Rated"
+                        }
+                        onClick={() => {
+                          setSelectedItem(item);
+                          setModalMode("topRated");
+                          setIsControlsModalOpen(true);
+                        }}
+                      >
+                        <FaAward className="" />
+                      </button>
+                      <button
+                        className={`rounded flex items-center justify-center ${
+                          item.isRecommended
+                            ? "text-(--color-primary)"
+                            : "text-(--color-secondary)"
+                        }`}
+                        onClick={() => {
+                          setSelectedItem(item);
+                          setModalMode("recommended");
+                          setIsControlsModalOpen(true);
+                        }}
+                        title={
+                          item.isRecommended
+                            ? "Recommended"
+                            : "Mark as Recommended"
+                        }
+                      >
+                        <AiTwotoneLike className="" />
+                      </button>
+                      <button
+                        className={`px-1 py-0.5 rounded flex items-center justify-center text-xs ${
+                          item.isNew
+                            ? "text-(--color-primary) border border-(--color-primary)"
+                            : "text-(--color-secondary) border border-(--color-secondary)"
+                        }`}
+                        onClick={() => {
+                          setSelectedItem(item);
+                          setModalMode("new");
+                          setIsControlsModalOpen(true);
+                        }}
+                        title={item.isNew ? "New Item" : "Mark as New"}
+                      >
+                        New
+                      </button>
+                    </div>
+                    <div className="flex gap-2">
+                      <button
+                        className="px-2 py-1 border border-(--color-primary) text-(--color-primary) hover:bg-(--color-primary) hover:text-white rounded"
+                        title="Edit Item"
+                        onClick={() => {
+                          setSelectedItem(item);
+                          setModalMode("edit");
+                          setIsEditViewItemModalOpen(true);
+                        }}
+                      >
+                        <LuPencilLine />
+                      </button>
+                      <button
+                        className="px-2 py-1 border border-(--color-primary) text-(--color-primary) hover:bg-(--color-primary) hover:text-white rounded"
+                        title="View Item Details"
+                        onClick={() => {
+                          setSelectedItem(item);
+                          setModalMode("view");
+                          setIsEditViewItemModalOpen(true);
+                        }}
+                      >
+                        <LuEye />
+                      </button>
+                      <button
+                        className="px-2 py-1 border border-(--color-primary) text-(--color-primary) hover:bg-(--color-primary) hover:text-white rounded"
+                        title="Delete Item"
+                        onClick={() => {
+                          setSelectedItem(item);
+                          setModalMode("delete");
+                          setIsControlsModalOpen(true);
+                        }}
+                      >
+                        <LuTrash2 />
+                      </button>
                     </div>
                   </div>
-                </div>
-                <div className="text-center">₹ {item.price.toFixed(2)}</div>
-                <div className="">
-                  <div>{item.category}</div>
-                  <div className="text-sm">{item.foodType}</div>
-                </div>
-                <div>
-                  <div className="relative inline-flex items-center">
-                    <select
-                      value={item.status}
-                      className={`appearance-none rounded-md pl-3 pr-8 py-1.5 text-xs font-semibold tracking-wide transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-(--color-primary) ${
-                        statusChipStyles[item.status]
-                      }`}
-                      onChange={(e) => {
-                      }}
-                    >
-                      <option value="available">
-                        {statusLabels.available}
-                      </option>
-                      <option value="unavailable">
-                        {statusLabels.unavailable}
-                      </option>
-                      <option value="discontinued">
-                        {statusLabels.discontinued}
-                      </option>
-                    </select>
-                    <LuChevronDown className="pointer-events-none absolute right-2 text-xs opacity-70" />
-                  </div>
-                </div>
-
-                <div className="flex gap-2">
-                  <button
-                    className={`rounded flex items-center justify-center ${
-                      item.isTopRated
-                        ? " text-(--color-primary)"
-                        : "text-(--color-secondary)"
-                    }`}
-                    title={item.isTopRated ? "Top Rated" : "Mark as Top Rated"}
-                    onClick={() => {
-                      setSelectedItem(item);
-                      setModalMode("topRated");
-                      setIsControlsModalOpen(true);
-                    }}
-                  >
-                    <FaAward className="" />
-                  </button>
-                  <button
-                    className={`rounded flex items-center justify-center ${
-                      item.isRecommended
-                        ? "text-(--color-primary)"
-                        : "text-(--color-secondary)"
-                    }`}
-                    onClick={() => {
-                      setSelectedItem(item);
-                      setModalMode("recommended");
-                      setIsControlsModalOpen(true);
-                    }}
-                    title={
-                      item.isRecommended ? "Recommended" : "Mark as Recommended"
-                    }
-                  >
-                    <AiTwotoneLike className="" />
-                  </button>
-                  <button
-                    className={`px-1 py-0.5 rounded flex items-center justify-center text-xs ${
-                      item.isNew
-                        ? "text-(--color-primary) border border-(--color-primary)"
-                        : "text-(--color-secondary) border border-(--color-secondary)"
-                    }`}
-                    onClick={() => {
-                      setSelectedItem(item);
-                      setModalMode("new");
-                      setIsControlsModalOpen(true);
-                    }}
-                    title={item.isNew ? "New Item" : "Mark as New"}
-                  >
-                    New
-                  </button>
-                </div>
-                <div className="flex gap-2">
-                  <button
-                    className="px-2 py-1 border border-(--color-primary) text-(--color-primary) hover:bg-(--color-primary) hover:text-white rounded"
-                    title="Edit Item"
-                    onClick={() => {
-                      setSelectedItem(item);
-                      setModalMode("edit");
-                      setIsEditViewItemModalOpen(true);
-                    }}
-                  >
-                    <LuPencilLine />
-                  </button>
-                  <button
-                    className="px-2 py-1 border border-(--color-primary) text-(--color-primary) hover:bg-(--color-primary) hover:text-white rounded"
-                    title="View Item Details"
-                    onClick={() => {
-                      setSelectedItem(item);
-                      setModalMode("view");
-                      setIsEditViewItemModalOpen(true);
-                    }}
-                  >
-                    <LuEye />
-                  </button>
-                  <button
-                    className="px-2 py-1 border border-(--color-primary) text-(--color-primary) hover:bg-(--color-primary) hover:text-white rounded"
-                    title="Delete Item"
-                    onClick={() => {
-                      setSelectedItem(item);
-                      setModalMode("delete");
-                      setIsControlsModalOpen(true);
-                    }}
-                  >
-                    <LuTrash2 />
-                  </button>
-                </div>
-              </div>
-            ))}
-            </>
-              )}
+                ))}
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -245,12 +250,25 @@ if (isLoading) {
           modalMode={modalMode}
           isOpen={isControlsModalOpen}
           onClose={() => setIsControlsModalOpen(false)}
+          onActionSuccess={fetchMenuItems}
         />
       )}
-       {isAddNewItemModalOpen && (
+
+      {isAddNewItemModalOpen && (
         <AddNewItemModal
           isOpen={isAddNewItemModalOpen}
           onClose={() => setIsAddNewItemModalOpen(false)}
+          onActionSuccess={fetchMenuItems}
+        />
+      )}
+
+      {isEditViewItemModalOpen && (
+        <EditOrViewItem
+          selectedItem={selectedItem}
+          modalMode={modalMode}
+          isOpen={isEditViewItemModalOpen}
+          onClose={() => setIsEditViewItemModalOpen(false)}
+          onActionSuccess={fetchMenuItems}
         />
       )}
     </>
