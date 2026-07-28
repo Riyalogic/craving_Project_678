@@ -60,7 +60,7 @@ const Login = () => {
       setUser(res.data.data);
       setIsLogin(true);
       setRole(res.data.data.userType);
-      // console.log(res.data.data.userType);
+       console.log(res.data.data.userType);
       
       res.data.data.userType === "restaurant" && navigate("/restaurant-dashboard");
 
@@ -169,12 +169,12 @@ const Login = () => {
                 />
                 <span className="text-sm">Remember me</span>
               </label>
-              <Link
-                to="/forgot-password"
+             <div
+                onClick={() => setIsForgotPasswordModalOpen(true)}
                 className="text-sm text-(--color-primary) hover:underline transition-colors"
               >
                 Forgot Password?
-              </Link>
+              </div>
             </div>
 
             <button

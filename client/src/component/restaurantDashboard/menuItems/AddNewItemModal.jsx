@@ -146,7 +146,6 @@ const AddNewItemModal = ({ isOpen, onClose, onActionSuccess }) => {
                         <span>Click here to upload an image</span>
                       </label>
                     )}
-                  </div>
                 </div>
                   <input
                     type="file"
@@ -264,6 +263,7 @@ const AddNewItemModal = ({ isOpen, onClose, onActionSuccess }) => {
                     className=" w-full border border-gray-300 rounded px-3 py-2"
                   />
                 </div>
+                 </div>
             </form>
           </main>
 

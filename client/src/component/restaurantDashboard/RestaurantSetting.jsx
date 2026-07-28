@@ -5,9 +5,9 @@ import { RiLoader4Fill } from "react-icons/ri";
 import { useAuth } from "../../context/AuthContext.jsx";
 import CoreDetails from "./settings/coreDetails/Index";
 import Information from "./settings/restaurantInformation/Index";
- import RestaurantPhotos from "./settings/RestaurantPhotos.jsx";
-import Loader from "../../component/Loader.jsx"
- import { IoMdHammer } from "react-icons/io";
+import RestaurantPhotos from "./settings/RestaurantPhotos.jsx";
+import Loader from "../../component/Loader.jsx";
+import { IoMdHammer } from "react-icons/io";
 
 const RestaurantSetting = () => {
   const { user } = useAuth();
@@ -18,8 +18,10 @@ const RestaurantSetting = () => {
   ];
   const [activeTab, setActiveTab] = useState("information");
   const [isLoadingResturantOpen, setIsLoadingResturantOpen] = useState(true);
-  const [isRestaurantOpen, setIsRestaurantOpen] = useState(() => sessionStorage.getItem("RestaurantOpen") === "true",);
-   const [isLoadingRestaurant, setIsLoadingRestaurant] = useState(false);
+  const [isRestaurantOpen, setIsRestaurantOpen] = useState(
+    () => sessionStorage.getItem("RestaurantOpen") === "true",
+  );
+  const [isLoadingRestaurant, setIsLoadingRestaurant] = useState(false);
   const [loadingRestaurantError, setLoadingRestaurantError] = useState(null);
   const [restaurantData, setRestaurantData] = useState();
 
@@ -53,7 +55,7 @@ const RestaurantSetting = () => {
     }
   };
 
-   const handleRestaurantOpen = async () => {
+  const handleRestaurantOpen = async () => {
     try {
       setIsLoadingResturantOpen(true);
       const res = await api.patch(
@@ -75,15 +77,15 @@ const RestaurantSetting = () => {
       setIsLoadingResturantOpen(false);
     }
   };
-useEffect(() => {
+  useEffect(() => {
     if (user?._id) {
       fetchRestaurantData();
     }
   }, [user]);
-  
+
   return (
     <>
-        <div className=" h-full flex flex-col">
+      <div className=" h-full flex flex-col">
         {isLoadingRestaurant ? (
           <Loader height="100%" width="100%" />
         ) : (
@@ -131,4 +133,3 @@ useEffect(() => {
 };
 
 export default RestaurantSetting;
-

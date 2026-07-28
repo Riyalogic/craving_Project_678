@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 // import dotenv from "dotenv";
 // dotenv.config();
 
-const sendEmail = async (to, String, message) => {
+const sendEmail = async (to, subject, message) => {
   try {
     //console.log("Started Sending Email");
 
@@ -17,9 +17,6 @@ const sendEmail = async (to, String, message) => {
         pass: process.env.GMAIL_PASSCODE,
       },
     });
-
-    //   console.log("3....2....1....");
-
 
     const mailOption = {
       from: process.env.GMAIL_USERNAME,
