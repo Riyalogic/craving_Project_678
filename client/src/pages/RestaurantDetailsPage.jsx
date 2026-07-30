@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../config/api.config.js";
 import toast from "react-hot-toast";
-import Loader from "../components/Loader";
+import Loader from "../component/Loader";
 
 const RestaurantDetailsPage = () => {
   const { restaurantId } = useParams();

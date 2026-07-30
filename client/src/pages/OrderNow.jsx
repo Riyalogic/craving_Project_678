@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../config/api.config.js";
 import toast from "react-hot-toast";
-import Loader from "../components/Loader";
-import NoDataFound from "../components/NoDataFound";
+import Loader from "../component/Loader";
+import NoDataFound from "../component/NoDataFound";
 import defaultRestaurantImage from "../assets/Samplerestaurant.jpg";
 
 const OrderNow = () => {
