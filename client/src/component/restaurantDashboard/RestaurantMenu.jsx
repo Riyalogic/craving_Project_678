@@ -1,11 +1,11 @@
-import React, { useState, useEffect} from "react";
+import { useState, useEffect} from "react";
 import { FaAward, FaRegGrinStars } from "react-icons/fa";
-import { BiSolidDish } from "react-icons/bi";
 import { LuPencilLine, LuTrash2, LuEye, LuChevronDown } from "react-icons/lu";
 import { AiTwotoneLike } from "react-icons/ai";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import ConfirmModal from "./menuItems/ConfirmModal";
-import AddNewItemModal from "./menuItems/AddNewItemModal";
+import AddNewItemModal from "./menuItems/AddNewItemModal.jsx";
+import EditOrViewItem from "./menuItems/EditOrViewItem.jsx"
 import api from "../../config/api.config.js";
 import toast from "react-hot-toast";
 import Loader from "../Loader.jsx";
@@ -35,7 +35,9 @@ const RestaurantMenu = () => {
   const fetchMenuItems = async () => {
     try{
       setIsLoading(true);
-      const response = await api.get("/restaurant/menu-items");
+      const response = await api.get("/restaurant/menu-items",{
+        params: { t: Date.now() },
+      });
       setMenuItems(response.data.data);
     }
     catch(error) {
@@ -47,14 +49,25 @@ const RestaurantMenu = () => {
   }
 
   useEffect(() => {
-    if (
-      isAddNewItemModalOpen || isEditViewItemModalOpen ||isControlsModalOpen
-    ) {
-      return;
+    queueMicrotask(() => {
+      fetchMenuItems();
+    })
+  }, []);
+
+   const handleStatusChange = async (itemId, status) => {
+    try {
+      const response = await api.patch(
+        `/restaurant/menu-item/${itemId}/status?status=${encodeURIComponent(status)}`,
+      );
+      toast.success(response.data.message || "Item status updated");
+      await fetchMenuItems();
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message ||
+          "Unable to update item status. Please try again.",
+      );
     }
-    fetchMenuItems();
-  },[isAddNewItemModalOpen,isEditViewItemModalOpen,isControlsModalOpen]);
-console.log(menuItems);
+  };
 
 if (isLoading) {
   return <Loader height="100%" width="100%" />

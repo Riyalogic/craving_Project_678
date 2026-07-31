@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoSearch, IoStar } from "react-icons/io5";
-import {
-  MdRestaurant,
-  MdLocalDining,
-  MdFastfood,
-  MdCake,
-  MdLunchDining,
-} from "react-icons/md";
+import { MdRestaurant, MdLocalDining, MdFastfood,MdCake, MdLunchDining,} from "react-icons/md";
 import CarouselComponent from "../component/CarouselComponent";
 import { useAuth } from "../context/AuthContext";
 import api from "../config/api.config.js";
@@ -39,13 +33,13 @@ const Home = () => {
           name: restaurant.restaurantName,
           description:
             restaurant.description ||
-            `${restaurant.cuisineType} cuisine in ${restaurant.city}`,
+            `${restaurant.cuisineTypes} cuisine in ${restaurant.city}`,
           rating: restaurant.rating || 0,
           numReviews: restaurant.numReviews || 0,
           image:
             restaurant.images?.[0]?.URL ||
             "https://placehold.co/300x200?text=Restaurant",
-          cuisines: restaurant.cuisineType,
+          cuisines: restaurant.cuisineTypes,
           geolocation: restaurant.geolocation,
           city: restaurant.city,
           address: restaurant.address,

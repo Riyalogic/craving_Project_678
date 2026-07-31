@@ -62,7 +62,7 @@ const RestaurantSchema = mongoose.Schema(
             default: "inactive",
           },
           averageRating: { type: Number,default:0},
-          cuidineTypes: {
+          cuisineTypes: {
             type: [String],
             required: true,
           },
