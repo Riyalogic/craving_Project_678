@@ -17,16 +17,12 @@ const RestaurantHero = ({ restaurant, onBack }) => {
         <div className="w-full h-full bg-gradient-to-br from-orange-700/80 to-neutral-700" />
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-
-      {/* Back button */}
       <button
         onClick={onBack}
         className="absolute top-4 left-4 flex items-center gap-1.5 bg-white/20 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-sm hover:bg-white/30 transition"
       >
         <IoArrowBack /> Back
       </button>
-
-      {/* Hero content */}
       <div className="absolute bottom-0 left-0 right-0 px-5 md:px-10 pb-5 text-white">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
