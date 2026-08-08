@@ -6,7 +6,17 @@ import {
   RestaurantUpdateInfo,
   OpenRestaurant,
   RestaurantUpdateLegalInfo,
-    RestaurantAddMenuItem,
+  RestaurantAddMenuItem,
+  RestaurantMenuItems,
+  RestaurantUpdateMenuItem,
+  RestaurantUpdateMenuItemStatus,
+  RestaurantToggleMenuItemControl,
+  RestaurantDeleteMenuItem,
+  RestaurantUpdateAddress,
+  RestaurantUpdateBankingDocuments,
+  RestaurantUpdateSocialMediaLinks,
+  RestaurantUpdateCoverPhoto,
+  RestaurantUpdateRestaurantImages,
 } from "../controllers/restaurant.controller.js";
 import { RestaurantAuthProtect } from "../middlewares/auth.middleware.js";
 
@@ -41,11 +51,70 @@ router.put(
   RestaurantUpdateLegalInfo,
 );
 
+router.get("/menu-items", RestaurantAuthProtect, RestaurantMenuItems);
+
 router.post(
   "/add-menu-item",
   RestaurantAuthProtect,
   upload.single("itemImage"),
   RestaurantAddMenuItem,
+);
+
+router.put(
+  "/menu-item/:itemId",
+  RestaurantAuthProtect,
+  upload.single("itemImage"),
+  RestaurantUpdateMenuItem,
+);
+
+router.patch(
+  "/menu-item/:itemId/status",
+  RestaurantAuthProtect,
+  RestaurantUpdateMenuItemStatus,
+);
+
+router.patch(
+  "/menu-item/:itemId/control",
+  RestaurantAuthProtect,
+  RestaurantToggleMenuItemControl,
+);
+
+router.delete(
+  "/menu-item/:itemId",
+  RestaurantAuthProtect,
+  RestaurantDeleteMenuItem,
+);
+
+router.put(
+  "/update-address",
+  RestaurantAuthProtect,
+  RestaurantUpdateAddress,
+);
+
+router.put(
+  "/update-banking-documents",
+  RestaurantAuthProtect,
+  RestaurantUpdateBankingDocuments,
+);
+
+router.put(
+  "/update-social-media-links",
+  RestaurantAuthProtect,
+  RestaurantUpdateSocialMediaLinks,
+);
+
+router.put(
+  "/update-cover-photo",
+  RestaurantAuthProtect,
+  upload.single("coverImage"),
+  RestaurantUpdateCoverPhoto,
+);
+
+router.put(
+  "/update-restaurant-images",
+  RestaurantAuthProtect,
+  upload.array("restaurantImages", 8),
+  RestaurantUpdateRestaurantImages,
 );
 
 export default router;
