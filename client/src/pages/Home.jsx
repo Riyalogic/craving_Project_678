@@ -184,7 +184,7 @@ const Home = () => {
                       {restaurant.description}
                     </p>
                     <div className="flex flex-wrap gap-2 mb-3">
-                      {restaurant.cuisines.split(",").map((cuisine, idx) => (
+                      {restaurant.cuisines.map((cuisine, idx) => (
                         <span
                           key={idx}
                           className="text-xs bg-(--color-base-300) text-(--color-base-content) px-2 py-1 rounded capitalize"

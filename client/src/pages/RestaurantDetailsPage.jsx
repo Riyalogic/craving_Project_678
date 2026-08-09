@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import api from "../config/api.config.js";
 import toast from "react-hot-toast";
 import Loader from "../component/Loader";
 import { IoArrowBack } from "react-icons/io5";
 import { TbChefHat } from "react-icons/tb";
-import RestaurantHero from "../component/publicRestaurantDetails/RestaurantHero";
-import RestaurantInfoStrip from "../component/publicRestaurantDetails/RestaurantInfoStrip";
-import RestaurantAbout from "../componentspublicRestaurantDetails/RestaurantAbout";
-import RestaurantGallery from "../component/publicRestaurantDetails/RestaurantGallery";
-import RestaurantContact from "../component/publicRestaurantDetails/RestaurantContact";
-import RestaurantSocialLinks from "../component/publicRestaurantDetails/RestaurantSocialLinks";
-import RestaurantMenu from "../component/publicRestaurantDetails/RestaurantMenu";
+import RestaurantHero from "../component/publicRestaurantDetails/RestaurantHero.jsx";
+import RestaurantInfoStrip from "../component/publicRestaurantDetails/RestaurantInfoStrip.jsx";
+import RestaurantAbout from "../component/publicRestaurantDetails/RestaurantAbout.jsx";
+import RestaurantGallery from "../component/publicRestaurantDetails/RestaurantGallery.jsx";
+import RestaurantContact from "../component/publicRestaurantDetails/RestaurantContact.jsx";
+import RestaurantSocialLinks from "../component/publicRestaurantDetails/RestaurantSocialLinks.jsx";
+import RestaurantMenu from "../component/publicRestaurantDetails/RestaurantMenu.jsx";
 
 const RestaurantDetailsPage = () => {
   const { restaurantId } = useParams();
@@ -25,7 +25,7 @@ const fetchDetails = async () => {
     try {
       setIsLoading(true);
       const response = await api.get( `/public/restaurant-detail/${restaurantId}`,);
-      setRestaurantDetails(response.data.data);
+      setDetails(response.data.data);
     } catch (error) {
       toast.error(
         error.response?.data?.message ||

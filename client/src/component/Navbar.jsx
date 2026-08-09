@@ -1,7 +1,8 @@
 import React,{ useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logoLight from "../assets/transparentLogoLight.png";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext.jsx";
+import { useCart } from "../context/CartContext.jsx"
 import { FaPowerOff } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
 import api from "../config/api.config.js";
@@ -9,7 +10,7 @@ import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, isLogin, role, setUser, setIsLogin, setRole } = useAuth();
-   const { totalItems } = useCart();
+  const { totalItems } = useCart();
   const navigate = useNavigate();
 
   const handleNavigate = () => {

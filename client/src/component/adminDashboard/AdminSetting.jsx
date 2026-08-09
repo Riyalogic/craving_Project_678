@@ -1,11 +1,11 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { MdEdit } from "react-icons/md";
 import { MdOutlineLockReset } from "react-icons/md";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../context/AuthContext.jsx";
 import api from "../../config/api.config.js";
 import toast from "react-hot-toast";
 import { MdOutlineAddAPhoto } from "react-icons/md";
-import PasswordChangeModal from "../commonModals/PasswordChangeModal";
+import PasswordChangeModal from "../commonModals/PasswordChangeModal.jsx";
 
 const AdminSetting = () => {
   const { user, setUser } = useAuth();
@@ -43,7 +43,7 @@ const AdminSetting = () => {
       setUser(response.data.data);
       sessionStorage.setItem("cravingUser", JSON.stringify(response.data.data));
 
-      setEditngProfile(false);
+      setEditingProfile(false);
       toast.success("Profile updated successfully!");
     } catch (err) {
       toast.error(err.response?.data?.message || "Failed to update profile");
@@ -51,6 +51,7 @@ const AdminSetting = () => {
       setIsLoading(false);
     }
   };
+
   const handleCancelProfile = () => {
     setFormData({
       fullName: user.fullName,
@@ -58,7 +59,7 @@ const AdminSetting = () => {
       phone: user.phone,
     });
     setProfilePicPreview(null);
-    setEditngProfile(false);
+    setEditingProfile(false);
   };
 
   const handleProfilePicChange = (e) => {
@@ -69,12 +70,13 @@ const AdminSetting = () => {
 
   return (
     <>
-      <div className=" overflow-y-auto h-full p-6 space-y-6">
-        <div className=" bg-(-color-base-200) rounded-lg p-6">
-          <div className=" flex justify-between items-center mb-4">
-            <h3 className=" text-lg font-semibold">Profile Information</h3>
+      <div className="overflow-y-auto h-full p-6 space-y-6">
+        {/* User Profile Section */}
+        <div className="bg-(--color-base-200) rounded-lg p-6">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-semibold">Profile Information</h3>
             {!editingProfile ? (
-              <div className=" flex gap-3">
+              <div className="flex gap-3">
                 <button
                   onClick={() => setEditingProfile(true)}
                   className="flex items-center gap-2 bg-(--color-primary) text-(--color-primary-content) px-3 py-1 rounded text-sm"
@@ -89,7 +91,7 @@ const AdminSetting = () => {
                 </button>
               </div>
             ) : (
-              <div className=" flex gap-2 justify-end">
+              <div className="flex gap-2 justify-end">
                 <button
                   onClick={handleSaveProfile}
                   className="flex items-center gap-2 bg-(--color-primary) text-(--color-primary-content) px-3 py-1 rounded text-sm"
@@ -99,7 +101,7 @@ const AdminSetting = () => {
                 </button>
                 <button
                   onClick={handleCancelProfile}
-                  className="flex items-center gap-2 bg-(--color-primary) text-(--color-primary-content) px-3 py-1 rounded text-sm"
+                  className="flex items-center gap-2 bg-(--color-secondary) text-(--color-secondary-content) px-3 py-1 rounded text-sm"
                   disabled={isLoading}
                 >
                   Cancel
@@ -109,9 +111,9 @@ const AdminSetting = () => {
           </div>
 
           <div>
-            <div className=" flex items-center gap-6">
-              <div className=" relative">
-                <div className=" w-36 h-36">
+            <div className="flex items-center gap-6">
+              <div className="relative">
+                <div className="w-36 h-36">
                   <img
                     src={profilePicPreview || user.photo.url}
                     alt="Profile"
@@ -124,7 +126,7 @@ const AdminSetting = () => {
                     className="absolute cursor-pointer bottom-1 right-1 border p-2 rounded-full w-fit bg-(--color-base-200)"
                     title="Change Photo"
                   >
-                    <label htmlFor="profilePic" className=" cursor-pointer">
+                    <label htmlFor="profilePic" className="cursor-pointer">
                       <MdOutlineAddAPhoto className="text-xl" />
                     </label>
                     <input
@@ -132,16 +134,16 @@ const AdminSetting = () => {
                       accept="image/*"
                       name="profilePic"
                       id="profilePic"
-                      className=" hidden"
+                      className="hidden"
                       onChange={handleProfilePicChange}
                     />
                   </div>
                 )}
               </div>
 
-              <div className=" space-y-4 w-full">
-                <div className=" grid grid-cols-5 gap-2 justify-center items-center">
-                  <label className=" block text-sm font-semibold mb-2">
+              <div className="space-y-4 w-full">
+                <div className="grid grid-cols-5 gap-2 justify-center items-center">
+                  <label className="block text-sm font-semibold mb-2">
                     Full Name
                   </label>
                   <input
@@ -182,6 +184,7 @@ const AdminSetting = () => {
           </div>
         </div>
       </div>
+
       {isPasswordChangeModalOpen && (
         <PasswordChangeModal
           open={isPasswordChangeModalOpen}
