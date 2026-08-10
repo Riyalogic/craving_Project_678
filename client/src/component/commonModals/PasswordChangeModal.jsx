@@ -9,7 +9,7 @@ const PasswordChangeModal = ({ open, onClose }) => {
   const [formData, setFormData] = useState({
     oldPassword: "",
     newPassword: "",
-    confirmNewPAssword: "",
+    confirmNewPassword: "",
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +31,7 @@ const PasswordChangeModal = ({ open, onClose }) => {
   const handleChangePassword = async () => {
     setIsLoading(true);
     try {
-      if (formData.newPassword !== formData.confirmNewPAssword) {
+      if (formData.newPassword !== formData.confirmNewPassword) {
         toast.error("New password and confirm password do not match.");
         setIsLoading(false);
         return;
@@ -52,7 +52,10 @@ const PasswordChangeModal = ({ open, onClose }) => {
   if (!open) return null;
   return (
     <>
-      <div className="fixed inset-0 z-999 bg-black/60 backdrop-blur-xs flex justify-center items-center">
+      <div
+        className="fixed inset-0 z-999 bg-black/60 backdrop-blur-xs flex justify-center items-center"
+        // onClick={handleCloseModal}
+      >
         <div className="bg-white w-xl rounded shadow max-h-[80vh] overflow-y-auto relative">
           <header className="flex justify-between p-4 border-b border-(--color-secondary)">
             <div className="font-bold text-xl text-(--color-primary)">
@@ -63,9 +66,9 @@ const PasswordChangeModal = ({ open, onClose }) => {
             </button>
           </header>
           <main>
-            <div className=" p-6 space-y-4">
-              <div className=" flex flex-col gap-2">
-                <label htmlFor="oldPassword" className=" font-semibold">
+            <div className="p-6 space-y-4">
+              <div className="flex flex-col gap-2">
+                <label htmlFor="oldPassword" className="font-semibold">
                   Current Password
                 </label>
                 <input
@@ -78,29 +81,29 @@ const PasswordChangeModal = ({ open, onClose }) => {
                   disabled={isLoading}
                 />
               </div>
-              <div className=" flex flex-col gap-2">
-                <label htmlFor="newPassword" className=" font-semibold">
+              <div className="flex flex-col gap-2">
+                <label htmlFor="newPassword" className="font-semibold">
                   New Password
                 </label>
                 <input
                   type="password"
-                  id="newpassword"
-                  name="newpassword"
+                  id="newPassword"
+                  name="newPassword"
                   value={formData.newPassword}
                   onChange={handleChange}
                   className="border border-(--color-secondary) rounded px-3 py-2 disabled:bg-(--color-secondary) disabled:text-(--color-secondary-content)"
                   disabled={isLoading}
                 />
               </div>
-              <div className=" flex flex-col gap-2">
-                <label htmlFor="confirmNewPassword" className=" font-semibold">
+              <div className="flex flex-col gap-2">
+                <label htmlFor="confirmNewPassword" className="font-semibold">
                   Confirm New Password
                 </label>
                 <input
-                  type="text"
-                  id="confirmNewpassword"
-                  name="confirmNewpassword"
-                  value={formData.confirmNewpassword}
+                  type="password"
+                  id="confirmNewPassword"
+                  name="confirmNewPassword"
+                  value={formData.confirmNewPassword}
                   onChange={handleChange}
                   className="border border-(--color-secondary) rounded px-3 py-2 disabled:bg-(--color-secondary) disabled:text-(--color-secondary-content)"
                   disabled={isLoading}
@@ -108,7 +111,7 @@ const PasswordChangeModal = ({ open, onClose }) => {
               </div>
             </div>
           </main>
-          <footer className=" w-full p-4 border-t border-(--color-secondary) flex justify-end gap-3">
+          <footer className="w-full p-4 border-t border-(--color-secondary) flex justify-end gap-3">
             <button
               onClick={handleCloseModal}
               className="flex items-center gap-2 bg-(--color-secondary) text-(--color-secondary-content) px-3 py-1 rounded text-sm"
@@ -123,10 +126,10 @@ const PasswordChangeModal = ({ open, onClose }) => {
             >
               {isLoading ? (
                 <>
-                <LuLoaderCircle className="animate-spin" /> Changing...
+                  <LuLoaderCircle className="animate-spin" /> Changing...
                 </>
-              ):(
-                "Change Pssword"
+              ) : (
+                "Change Password"
               )}
             </button>
           </footer>

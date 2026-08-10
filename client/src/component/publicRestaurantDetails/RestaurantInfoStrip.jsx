@@ -1,5 +1,5 @@
 import React from "react";
-import {IoLocationOutline,IoTimeOutline,IoCallOutline, IoMailOutline,} from "react-icons/io5";
+import { IoLocationOutline,IoTimeOutline,IoCallOutline, IoMailOutline,} from "react-icons/io5";
 
 const RestaurantInfoStrip = ({ restaurant }) => {
   const { contactDetails, servingHours, address, city, state } = restaurant;
