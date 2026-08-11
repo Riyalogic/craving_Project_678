@@ -7,10 +7,7 @@ import toast from "react-hot-toast";
 const RestaurantInformation = () => {
   const { user, setUser } = useAuth();
 
-  // Common State variables
   const [isLoading, setIsLoading] = useState(false);
-
-  // Restaurant handlers
   const [restaurantData, setRestaurantData] = useState(
     JSON.parse(sessionStorage.getItem("cravingRestaurant")) || [],
   );
@@ -37,8 +34,6 @@ const RestaurantInformation = () => {
   const handleSaveRestaurant = async () => {
     try {
       setIsLoading(true);
-
-      // Prepare payload for restaurant update
       console.log("restaurantFormData", restaurantFormData);
 
       const res = await api.put(
@@ -79,8 +74,6 @@ const RestaurantInformation = () => {
 
   return (
     <>
-      {/* Restaurant Information Section */}
-
       <div className="bg-(--color-base-100) rounded-lg p-3">
         <div className="flex justify-between items-center border-b border-(--color-secondary) pb-2 mb-2">
           <div className="flex items-center gap-3">

@@ -1,20 +1,21 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { MdOutlineAddAPhoto } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
-import api from "../../../config/api.config";
+import api from "../../../config/api.config.js";
 import toast from "react-hot-toast";
 import { RiLoader4Fill } from "react-icons/ri";
 
 const RestaurantPhotos = () => {
   const MAX_FILE_SIZE = 1024 * 1024; 
   const MAX_GALLERY_IMAGES = 8;
-   const [restaurantData, setRestaurantData] = useState(
+
+  const [restaurantData, setRestaurantData] = useState(
     JSON.parse(sessionStorage.getItem("cravingRestaurant")) || {},
   );
   const [coverImage, setCoverImage] = useState(null);
   const [galleryImages, setGalleryImages] = useState([]);
   const [errors, setErrors] = useState({ cover: "", gallery: "" });
-    const [isSavingCover, setIsSavingCover] = useState(false);
+  const [isSavingCover, setIsSavingCover] = useState(false);
   const [isSavingGallery, setIsSavingGallery] = useState(false);
 
   const coverPreview = useMemo(() => {
@@ -108,6 +109,7 @@ const RestaurantPhotos = () => {
     );
     setErrors((prev) => ({ ...prev, gallery: "" }));
   };
+
   const handleSaveCoverPhoto = async () => {
     if (!coverImage) {
       toast.error("Please select a cover image to upload.");
@@ -132,6 +134,7 @@ const RestaurantPhotos = () => {
       setIsSavingCover(false);
     }
   };
+
   const handleSaveRestaurantImages = async () => {
     if (galleryImages.length === 0) {
       toast.error("Please select at least one restaurant image to upload.");
@@ -219,7 +222,7 @@ const RestaurantPhotos = () => {
                     className="w-full h-56 object-cover"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-black/35 via-transparent to-transparent" />
-               <span className="absolute top-2 left-2 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-yellow-400 text-yellow-900">
+                  <span className="absolute top-2 left-2 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-yellow-400 text-yellow-900">
                     New — Not Saved
                   </span>
                 </div>
@@ -247,7 +250,7 @@ const RestaurantPhotos = () => {
                   Upload a new image above to replace this cover.
                 </p>
               </div>
-             ) : (
+            ) : (
               <div className="rounded-xl border border-dashed border-(--color-secondary) bg-linear-to-br from-white to-(--color-base-100) px-4 py-8 text-center">
                 <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-(--color-primary)/10 text-(--color-primary)">
                   <MdOutlineAddAPhoto className="text-2xl" />
@@ -296,7 +299,7 @@ const RestaurantPhotos = () => {
                 disabled={galleryImages.length >= MAX_GALLERY_IMAGES}
                 className="hidden"
               />
-               <button
+              <button
                 onClick={handleSaveRestaurantImages}
                 disabled={galleryImages.length === 0 || isSavingGallery}
                 className="inline-flex items-center gap-1.5 bg-(--color-primary) text-(--color-primary-content) px-3 py-1.5 rounded-md text-xs shadow-sm hover:opacity-95 transition disabled:opacity-40 disabled:cursor-not-allowed"
@@ -317,7 +320,7 @@ const RestaurantPhotos = () => {
 
           {galleryPreviews.length > 0 ? (
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-               <div className="col-span-full mb-1">
+              <div className="col-span-full mb-1">
                 <p className="text-[11px] text-yellow-600 font-medium">
                   New images — not saved yet. Click "Save Images" to upload.
                 </p>
@@ -379,7 +382,7 @@ const RestaurantPhotos = () => {
                 </div>
               ))}
             </div>
-        ) :  (
+          ) : (
             <div className="rounded-xl border border-dashed border-(--color-secondary) bg-linear-to-br from-white to-(--color-base-100) px-4 py-10 text-center">
               <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-(--color-primary)/10 text-(--color-primary)">
                 <MdOutlineAddAPhoto className="text-2xl" />

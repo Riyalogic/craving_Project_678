@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MdEdit } from "react-icons/md";
-import api from "../../../../config/api.config.js";
+import api from "../../../../config/ApiConfig";
 import toast from "react-hot-toast";
 
 const RestaurantAddress = () => {
@@ -21,7 +21,7 @@ const RestaurantAddress = () => {
     geoLon: restaurantData?.geoLocation?.lon || "",
   });
   const [isLoading, setIsLoading] = useState(false);
-   const [isFetchingLocation, setIsFetchingLocation] = useState(false);
+  const [isFetchingLocation, setIsFetchingLocation] = useState(false);
 
   const handleRestaurantAddressChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +33,7 @@ const RestaurantAddress = () => {
 
   const handleGetLocation = () => {
     if (navigator.geolocation) {
-        setIsFetchingLocation(true);
+      setIsFetchingLocation(true);
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
@@ -42,11 +42,11 @@ const RestaurantAddress = () => {
             geoLat: latitude,
             geoLon: longitude,
           }));
-           setIsFetchingLocation(false);
+          setIsFetchingLocation(false);
         },
         (error) => {
           console.error("Error getting location:", error);
-            setIsFetchingLocation(false);
+          setIsFetchingLocation(false);
         },
       );
     }
@@ -79,7 +79,7 @@ const RestaurantAddress = () => {
       geoLat: restaurantData?.geoLocation?.lat || "",
       geoLon: restaurantData?.geoLocation?.lon || "",
     });
-     setEditingRestaurantAddress(false);
+    setEditingRestaurantAddress(false);
   };
 
   return (

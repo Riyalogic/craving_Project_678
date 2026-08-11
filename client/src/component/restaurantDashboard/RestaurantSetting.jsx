@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import api from "../../config/api.config.js";
 import toast from "react-hot-toast";
 import { RiLoader4Fill } from "react-icons/ri";
-import { useAuth } from "../../context/AuthContext.jsx";
+import { useAuth } from "../../context/AuthContext";
 import CoreDetails from "./settings/coreDetails/Index";
 import Information from "./settings/restaurantInformation/Index";
-import RestaurantPhotos from "./settings/RestaurantPhotos.jsx";
-import Loader from "../../component/Loader.jsx";
+import RestaurantPhotos from "./settings/RestaurantPhotos";
+import Loader from "../../component/Loader";
 import { IoMdHammer } from "react-icons/io";
 
 const RestaurantSetting = () => {
@@ -17,10 +17,13 @@ const RestaurantSetting = () => {
     { id: "photos", label: "Photos" },
   ];
   const [activeTab, setActiveTab] = useState("information");
+
   const [isLoadingResturantOpen, setIsLoadingResturantOpen] = useState(true);
   const [isRestaurantOpen, setIsRestaurantOpen] = useState(
     () => sessionStorage.getItem("RestaurantOpen") === "true",
   );
+
+  //Load Restaurant Data
   const [isLoadingRestaurant, setIsLoadingRestaurant] = useState(false);
   const [loadingRestaurantError, setLoadingRestaurantError] = useState(null);
   const [restaurantData, setRestaurantData] = useState();
@@ -31,7 +34,7 @@ const RestaurantSetting = () => {
       setIsLoadingResturantOpen(true);
 
       const res = await api.get(
-        `/restaurant/get-restaurant-data?id=${user._id}`,
+        `/restaurant/get-resturant-data?id=${user._id}`,
       );
       setRestaurantData(res.data.data);
       sessionStorage.setItem(
@@ -39,6 +42,7 @@ const RestaurantSetting = () => {
         JSON.stringify(res.data.data),
       );
       sessionStorage.setItem("RestaurantOpen", res.data.data.isOpen);
+
       setIsRestaurantOpen(res.data.data.isOpen);
     } catch (error) {
       toast.error(
@@ -58,6 +62,7 @@ const RestaurantSetting = () => {
   const handleRestaurantOpen = async () => {
     try {
       setIsLoadingResturantOpen(true);
+
       const res = await api.patch(
         `/restaurant/change-open-status/${!isRestaurantOpen}?id=${user._id}`,
       );
@@ -67,6 +72,8 @@ const RestaurantSetting = () => {
         "cravingRestaurant",
         JSON.stringify(res.data.data),
       );
+      sessionStorage.setItem("RestaurantOpen", res.data.data.isOpen);
+
       toast.success(res.data.message);
     } catch (error) {
       toast.error(
@@ -77,6 +84,7 @@ const RestaurantSetting = () => {
       setIsLoadingResturantOpen(false);
     }
   };
+
   useEffect(() => {
     if (user?._id) {
       fetchRestaurantData();

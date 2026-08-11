@@ -12,7 +12,6 @@ const LegalInformation = () => {
   );
 
   const handleSaveLegalInfo = async () => {
-    // Implement save logic here
 
     try {
       setEditingLegalInfo(false);

@@ -5,15 +5,12 @@ import { MdEdit, MdOutlineAddAPhoto, MdOutlineLockReset } from "react-icons/md";
 import api from "../../../../config/api.config.js";
 import toast from "react-hot-toast";
 
-const PersonalInformation = () => {
+const PresonalInformation = () => {
   const { user, setUser } = useAuth();
 
-  // Common State variables
   const [isLoading, setIsLoading] = useState(false);
   const [isPasswordChangeModalOpen, setIsPasswordChangeModalOpen] =
     useState(false);
-
-  // Profile handlers
 
   const [editingProfile, setEditingProfile] = useState(false);
   const [profilePic, setProfilePic] = useState(null);
@@ -72,7 +69,6 @@ const PersonalInformation = () => {
 
   return (
     <>
-      {/* User Profile Section */}
       <div className="bg-(--color-base-100) rounded-lg p-3 flex items-center gap-3">
         <div className="relative">
           <div className="w-26 h-26">
@@ -196,4 +192,4 @@ const PersonalInformation = () => {
   );
 };
 
-export default PersonalInformation;
+export default PresonalInformation;

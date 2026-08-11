@@ -1,14 +1,14 @@
-import { useState, useEffect} from "react";
-import { FaAward, FaRegGrinStars } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import { FaAward } from "react-icons/fa";
 import { LuPencilLine, LuTrash2, LuEye, LuChevronDown } from "react-icons/lu";
 import { AiTwotoneLike } from "react-icons/ai";
 import { IoMdAddCircleOutline } from "react-icons/io";
-import ConfirmModal from "./menuItems/ConfirmModal";
+import ConfirmModal from "./menuItems/ConfirmModal.jsx";
 import AddNewItemModal from "./menuItems/AddNewItemModal.jsx";
-import EditOrViewItem from "./menuItems/EditOrViewItem.jsx"
+import EditOrViewItem from "./menuItems/EditOrViewItem.jsx";
 import api from "../../config/api.config.js";
 import toast from "react-hot-toast";
-import Loader from "../Loader.jsx";
+import Loader from "../Loader";
 
 const statusChipStyles = {
   available: "bg-green-100 text-green-700 border border-green-300",
@@ -33,28 +33,28 @@ const RestaurantMenu = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchMenuItems = async () => {
-    try{
+    try {
       setIsLoading(true);
-      const response = await api.get("/restaurant/menu-items",{
+      const response = await api.get("/restaurant/menu-items", {
         params: { t: Date.now() },
       });
       setMenuItems(response.data.data);
-    }
-    catch(error) {
-      toast.error(error.response?.data?.message || "Unknown error occured while fetching menu items. Please try again.",)
-    }
-    finally{
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message ||
+          "Unknown error occurred while fetching menu items. Please try again.",
+      );
+    } finally {
       setIsLoading(false);
     }
-  }
-
+  };
   useEffect(() => {
     queueMicrotask(() => {
       fetchMenuItems();
-    })
+    });
   }, []);
 
-   const handleStatusChange = async (itemId, status) => {
+  const handleStatusChange = async (itemId, status) => {
     try {
       const response = await api.patch(
         `/restaurant/menu-item/${itemId}/status?status=${encodeURIComponent(status)}`,
@@ -69,9 +69,9 @@ const RestaurantMenu = () => {
     }
   };
 
-if (isLoading) {
-  return <Loader height="100%" width="100%" />
-}
+  if (isLoading) {
+    return <Loader height="100%" width="100%" />;
+  }
 
   return (
     <>

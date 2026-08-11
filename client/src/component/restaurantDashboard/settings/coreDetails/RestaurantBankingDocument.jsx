@@ -22,7 +22,7 @@ const RestaurantBankingDocument = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSaveBankingDocument = async () => {
-   try {
+    try {
       setIsLoading(true);
       const res = await api.put("/restaurant/update-banking-documents", bankingDocumentFormData);
       setRestaurantData(res.data.data);
@@ -39,7 +39,7 @@ const RestaurantBankingDocument = () => {
   };
 
   const handleCancelBankingDocument = () => {
-     setBankingDocumentFormData({
+    setBankingDocumentFormData({
       bankName: restaurantData?.financialDetails?.bankName || "",
       accountNumber: restaurantData?.financialDetails?.accountNumber || "",
       ifscCode: restaurantData?.financialDetails?.ifscCode || "",

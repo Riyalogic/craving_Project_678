@@ -107,12 +107,12 @@ const AddNewItemModal = ({ isOpen, onClose, onActionSuccess }) => {
       price: "",
       category: "",
       foodType: "",
-      status: "",
+      status: "available",
       isTopRated: false,
       isRecommended: false,
       isNew: true,
       isDeleted: false,
-    })
+    });
     setPreviewImage(null);
     setItemImage(null);
     onClose();
@@ -126,7 +126,7 @@ const AddNewItemModal = ({ isOpen, onClose, onActionSuccess }) => {
           <header className="flex justify-between items-center border-b border-(--color-secondary) pb-2 mb-4">
             <h2 className="text-lg font-semibold">Add New Item</h2>
             <button
-              className="text-red-300 hover:text-red-500" 
+              className="text-red-300 hover:text-red-500"
               onClick={handleOnClose}
             >
               <IoMdCloseCircleOutline size={24} />
@@ -136,17 +136,24 @@ const AddNewItemModal = ({ isOpen, onClose, onActionSuccess }) => {
           <main>
             <form className=" space-y-4">
               <div className="grid grid-cols-3 gap-4">
-                <div className=" flex justify-between items-center">
-                  <div className=" h-52 w-52 mx-auto border-2 border-(--color-primary) rounded overflow-hidden">
+                <div className=" flex justify-center items-center">
+                  <div className="h-52 w-52 mx-auto border-2 border-(--color-primary) rounded overflow-hidden">
                     {previewImage ? (
-                      <img src={previewImage} alt="preview"  className=" h-full w-full object-cover"/>
+                      <img
+                        src={previewImage}
+                        alt="Preview"
+                        className="h-full w-full object-cover"
+                      />
                     ) : (
-                      <label htmlFor="itemImage" className=" cursor-pointer flex flex-col items-center justify-center h-full text-(--color-primary)/60 hover:text-(--color-Primary) text-center">
+                      <label
+                        htmlFor="itemImage"
+                        className="cursor-pointer flex flex-col items-center justify-center h-full text-(--color-primary)/60 hover:text-(--color-primary) text-center"
+                      >
                         <FaRegFileImage size={32} className="mb-2" />
                         <span>Click here to upload an image</span>
                       </label>
                     )}
-                </div>
+                  </div>
                   <input
                     type="file"
                     id="itemImage"
@@ -156,7 +163,7 @@ const AddNewItemModal = ({ isOpen, onClose, onActionSuccess }) => {
                       setItemImage(file);
                       setPreviewImage(URL.createObjectURL(file));
                     }}
-                    className=" hidden"
+                    className="hidden"
                   />
                 </div>
                 <div className="space-y-4 col-span-2">
@@ -263,13 +270,13 @@ const AddNewItemModal = ({ isOpen, onClose, onActionSuccess }) => {
                     className=" w-full border border-gray-300 rounded px-3 py-2"
                   />
                 </div>
-                 </div>
+              </div>
             </form>
           </main>
 
           <footer className="flex justify-between border-t border-(--color-secondary) pt-2 mt-4">
             <button
-              className="bg-(--color-primary) disabled:bg-(--color-secondary)/60 text-(--color-primary) px-4 py-2 rounded mr-2"
+              className="bg-(--color-secondary) disabled:bg-(--color-secondary)/60 text-(--color-secondary-content) px-4 py-2 rounded mr-2"
               onClick={handleOnClose}
               disabled={isLoading}
             >
@@ -280,7 +287,7 @@ const AddNewItemModal = ({ isOpen, onClose, onActionSuccess }) => {
               onClick={handleAddNewItem}
               disabled={isLoading}
             >
-            {isLoading ? "Adding..." : "Add Item"}
+              {isLoading ? "Adding..." : "Add Item"}
             </button>
           </footer>
         </div>

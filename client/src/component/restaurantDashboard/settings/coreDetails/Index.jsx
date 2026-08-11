@@ -1,7 +1,7 @@
 import React from "react";
-import RestaurantAddress from "./RestaurantAddress";
-import RestaurantBankingDocument from "./RestaurantBankingDocument";
-import RestaurantSocialMediaLinks from "./RestaurantSocialMediaLinks";
+import RestaurantAddress from "./RestaurantAddress.jsx";
+import RestaurantBankingDocument from "./RestaurantBankingDocument.jsx";
+import RestaurantSocialMediaLinks from "./RestaurantSocialMediaLinks.jsx";
 
 const Index = () => {
   return (

@@ -14,22 +14,19 @@ const modalConfig = {
     heading: "Change Top Rated",
     description: "Toggle this item's top-rated badge.",
     confirmLabel: "Confirm",
-    confirmClass:
-      "bg-(--color-primary) hover:opacity-90 text-(--color-primary-content)",
+    confirmClass: "bg-(--color-primary) hover:opacity-90 text-(--color-primary-content)",
   },
   recommended: {
     heading: "Change Recommendation",
     description: "Toggle this item's recommended badge.",
     confirmLabel: "Confirm",
-    confirmClass:
-      "bg-(--color-primary) hover:opacity-90 text-(--color-primary-content)",
+    confirmClass: "bg-(--color-primary) hover:opacity-90 text-(--color-primary-content)",
   },
   new: {
     heading: "Change New Badge",
     description: "Toggle this item's new badge.",
     confirmLabel: "Confirm",
-    confirmClass:
-      "bg-(--color-primary) hover:opacity-90 text-(--color-primary-content)",
+    confirmClass: "bg-(--color-primary) hover:opacity-90 text-(--color-primary-content)",
   },
 };
 
@@ -41,20 +38,23 @@ const ConfirmModal = ({
   onActionSuccess,
 }) => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+
   const currentConfig = modalConfig[modalMode] || {
     heading: "Are you sure?",
     description: "Please confirm this action.",
     confirmLabel: "Confirm",
-    confirmClass:
-      "bg-(--color-primary) hover:opacity-90 text-(--color-primary-content)",
+    confirmClass: "bg-(--color-primary) hover:opacity-90 text-(--color-primary-content)",
   };
+
   const handleConfirm = async () => {
     if (!selectedItem?._id) {
       toast.error("Invalid item selected.");
       return;
     }
+
     try {
       setIsSubmitting(true);
+
       if (modalMode === "delete") {
         const response = await api.delete(
           `/restaurant/menu-item/${selectedItem._id}`,
@@ -66,15 +66,18 @@ const ConfirmModal = ({
           recommended: "isRecommended",
           new: "isNew",
         };
+
         const control = controlMap[modalMode];
         const response = await api.patch(
           `/restaurant/menu-item/${selectedItem._id}/control?control=${encodeURIComponent(control)}`,
         );
         toast.success(response.data.message || "Item control updated");
       }
+
       if (onActionSuccess) {
         await onActionSuccess();
       }
+
       onClose();
     } catch (error) {
       toast.error(
@@ -85,6 +88,7 @@ const ConfirmModal = ({
       setIsSubmitting(false);
     }
   };
+
   if (!isOpen) return null;
   return (
     <>
@@ -107,8 +111,7 @@ const ConfirmModal = ({
             </h2>
             <p className="text-sm text-gray-600">{currentConfig.description}</p>
             <p className="text-sm">
-              Item:{" "}
-              <span className="font-semibold">{selectedItem?.itemName}</span>
+              Item: <span className="font-semibold">{selectedItem?.itemName}</span>
             </p>
           </div>
           <div className="mt-6 flex justify-end gap-2 border-t border-(--color-secondary) pt-3">
