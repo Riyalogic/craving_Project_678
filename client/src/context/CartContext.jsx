@@ -26,7 +26,6 @@ export const CartProvider = ({ children }) => {
     return found ? found.quantity : 0;
   };
 
-  // returns "added" or "different_restaurant"
   const addItem = (item, restaurantId, restaurantName) => {
     if (cart.restaurantId && cart.restaurantId !== restaurantId) {
       return "different_restaurant";
@@ -96,7 +95,6 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () => setCart(emptyCart);
 
-  // clears cart and starts fresh with new restaurant's item
   const replaceCart = (item, restaurantId, restaurantName) => {
     setCart({
       restaurantId,

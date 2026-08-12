@@ -10,12 +10,13 @@ const CarouselComponent = () => {
   const [autoPlay, setAutoPlay] = useState(true);
 
   const images = [bgImage1, bgImage2, bgImage3, bgImage4];
+
   useEffect(() => {
     if (!autoPlay) return;
 
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % images.length);
-    }, 5000);
+    }, 5000); 
 
     return () => clearInterval(interval);
   }, [autoPlay, images.length]);
@@ -55,6 +56,7 @@ const CarouselComponent = () => {
           />
         </div>
       ))}
+
       <button
         onClick={prevSlide}
         className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 text-white p-2 rounded-full transition z-10 backdrop-blur-sm"
@@ -62,6 +64,7 @@ const CarouselComponent = () => {
       >
         <IoChevronBack size={24} />
       </button>
+
       <button
         onClick={nextSlide}
         className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 text-white p-2 rounded-full transition z-10 backdrop-blur-sm"
@@ -69,6 +72,7 @@ const CarouselComponent = () => {
       >
         <IoChevronForward size={24} />
       </button>
+
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
         {images.map((_, index) => (
           <button
