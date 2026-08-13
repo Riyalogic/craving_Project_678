@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoSearch, IoStar } from "react-icons/io5";
-import { MdRestaurant, MdLocalDining, MdFastfood,MdCake, MdLunchDining,} from "react-icons/md";
+import { MdRestaurant,MdLocalDining,MdFastfood, MdCake,MdLunchDining,} from "react-icons/md";
 import CarouselComponent from "../component/CarouselComponent";
 import { useAuth } from "../context/AuthContext";
 import api from "../config/api.config.js";
@@ -27,19 +27,20 @@ const Home = () => {
     const loadRestaurants = async () => {
       try {
         setLoading(true);
-        const response = await api.get("/public/restaurants");
+        const response = await api.get("/public/restau");
+      
         const formattedRestaurants = response.data.data.map((restaurant) => ({
           id: restaurant._id,
           name: restaurant.restaurantName,
           description:
             restaurant.description ||
-            `${restaurant.cuisineTypes} cuisine in ${restaurant.city}`,
+            `${restaurant.cuisineType} cuisine in ${restaurant.city}`,
           rating: restaurant.rating || 0,
           numReviews: restaurant.numReviews || 0,
           image:
             restaurant.images?.[0]?.URL ||
             "https://placehold.co/300x200?text=Restaurant",
-          cuisines: restaurant.cuisineTypes,
+          cuisines: restaurant.cuisineType,
           geolocation: restaurant.geolocation,
           city: restaurant.city,
           address: restaurant.address,
@@ -96,6 +97,8 @@ const Home = () => {
         <div className="absolute inset-0 z-0">
           <CarouselComponent />
         </div>
+
+       
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
@@ -108,9 +111,9 @@ const Home = () => {
               Order from thousands of restaurants and get it delivered to your
               doorstep
             </p>
+            
               <div className="flex gap-4 justify-center">
-                {!user && (
-                <button
+               {!user && ( <button
                   onClick={() => navigate("/register/customer")}
                   className="bg-(--color-primary) text-(--color-primary-content) px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition"
                 >
@@ -124,7 +127,9 @@ const Home = () => {
                   Order Now
                 </button>
               </div>
+            
           </div>
+
           <div className="flex items-center bg-(--color-base-100) rounded-lg px-4 py-3 max-w-4xl mx-auto">
             <IoSearch className="text-(--color-base-content) text-xl mr-3" />
             <input
@@ -137,6 +142,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+
       <section className="py-4 md:py-8 bg-linear-to-b from-(--color-primary) to-(--color-primary-content)">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
@@ -150,6 +156,7 @@ const Home = () => {
               {filteredRestaurants.length !== 1 ? "s" : ""} available
             </p>
           </div>
+
           {loading ? (
             <div className="text-center py-12">
               <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-(--color-primary)"></div>
@@ -165,6 +172,7 @@ const Home = () => {
                   onClick={() => navigate(`/restaurant-menu/${restaurant.id}`)}
                   className="flex flex-col bg-(--color-base-100) rounded-xl overflow-hidden shadow-md hover:shadow-xl transition cursor-pointer transform hover:scale-105"
                 >
+               
                   <div className="relative h-48 overflow-hidden bg-(--color-base-200)">
                     <img
                       src={restaurant.image}
@@ -176,6 +184,7 @@ const Home = () => {
                       {restaurant.rating}
                     </div>
                   </div>
+
                   <div className="flex flex-col flex-1 p-4">
                     <h3 className="font-bold text-(--color-content) text-lg mb-1">
                       {restaurant.name}
@@ -183,8 +192,9 @@ const Home = () => {
                     <p className="text-(--color-base-content) text-sm mb-3">
                       {restaurant.description}
                     </p>
+
                     <div className="flex flex-wrap gap-2 mb-3">
-                      {restaurant.cuisines.map((cuisine, idx) => (
+                      {restaurant.cuisines.split(",").map((cuisine, idx) => (
                         <span
                           key={idx}
                           className="text-xs bg-(--color-base-300) text-(--color-base-content) px-2 py-1 rounded capitalize"
@@ -193,6 +203,7 @@ const Home = () => {
                         </span>
                       ))}
                     </div>
+
                     <div className="mt-auto pt-3 border-t border-(--color-base-200)">
                       <button
                         onClick={(e) => {
@@ -226,6 +237,7 @@ const Home = () => {
           )}
         </div>
       </section>
+
       <section className="bg-(--color-base-100) py-12 md:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -251,6 +263,7 @@ const Home = () => {
                 Orders delivered with care and precision
               </p>
             </div>
+
             <div className="bg-white rounded-lg p-8 shadow-md hover:shadow-lg transition text-center">
               <div className="mb-4">
                 <div className="text-4xl md:text-5xl font-bold text-(--color-accent) mb-2">
@@ -264,6 +277,7 @@ const Home = () => {
                 Satisfied users enjoying delicious food
               </p>
             </div>
+
             <div className="bg-white rounded-lg p-8 shadow-md hover:shadow-lg transition text-center">
               <div className="mb-4">
                 <div className="text-4xl md:text-5xl font-bold text-(--color-primary) mb-2">
@@ -277,6 +291,7 @@ const Home = () => {
                 Restaurants serving amazing cuisine
               </p>
             </div>
+
             <div className="bg-white rounded-lg p-8 shadow-md hover:shadow-lg transition text-center">
               <div className="mb-4">
                 <div className="text-4xl md:text-5xl font-bold text-(--color-accent) mb-2">
@@ -293,6 +308,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+
       <section className="bg-white py-12 md:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -332,6 +348,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
+
             <div className="bg-(--color-base-100) rounded-lg p-8 shadow-md hover:shadow-lg transition">
               <div className="flex items-center gap-2 mb-4">
                 {[...Array(5)].map((_, i) => (
@@ -359,6 +376,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
+
             <div className="bg-(--color-base-100) rounded-lg p-8 shadow-md hover:shadow-lg transition">
               <div className="flex items-center gap-2 mb-4">
                 {[...Array(5)].map((_, i) => (
@@ -389,6 +407,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+
       <section className="bg-(--color-primary) text-(--color-primary-content) py-12 md:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">

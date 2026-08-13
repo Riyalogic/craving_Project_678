@@ -4,11 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import api from "../config/api.config.js";
 import { useAuth } from "../context/AuthContext";
-import ForgotPasswordModal from "../component/commonModals/ForgotPasswordModel.jsx";
+import ForgotPasswordModal from "../component/commonModals/ForgotPasswordModal";
 
 const Login = () => {
   const navigate = useNavigate();
   const { setUser, setIsLogin, setRole } = useAuth();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -59,34 +60,27 @@ const Login = () => {
       sessionStorage.setItem("cravingUser", JSON.stringify(res.data.data));
       setUser(res.data.data);
       setIsLogin(true);
+      //console.log(res.data.data.userType);
       setRole(res.data.data.userType);
-       console.log(res.data.data.userType);
-      
-      res.data.data.userType === "restaurant" && navigate("/restaurant-dashboard");
+
+      res.data.data.userType === "restaurant" &&
+        navigate("/restaurant-dashboard");
 
       res.data.data.userType === "rider" && navigate("/rider-dashboard");
 
       res.data.data.userType === "admin" && navigate("/admin-dashboard");
 
       res.data.data.userType === "customer" && navigate("/customer-dashboard");
-      // if (res.data.data.userType === "restaurant") {
-      //   navigate("/restaurant-dashboard");
-      // } else if (res.data.data.userType === "rider") {
-      //   navigate("/rider-dashboard");
-      // } else if (res.data.data.userType === "admin") {
-      //   navigate("/admin-dashboard");
-      // } else {
-      //   navigate("/customer-dashboard");
-      // }
     } catch (error) {
       toast.error(
         error.response?.data?.message ||
-          "Unknown error occurred during registration. Please try again.",
+          "Unknown error occurred during Login. Please try again.",
       );
     } finally {
       setLoading(false);
     }
   };
+
   return (
     <>
       <div className="h-[90vh] bg-[url('/foodTable.webp')] flex items-center justify-start bg-cover bg-center p-10 md:ps-30">
@@ -169,7 +163,7 @@ const Login = () => {
                 />
                 <span className="text-sm">Remember me</span>
               </label>
-             <div
+              <div
                 onClick={() => setIsForgotPasswordModalOpen(true)}
                 className="text-sm text-(--color-primary) hover:underline transition-colors"
               >

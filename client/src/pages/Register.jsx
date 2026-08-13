@@ -145,6 +145,7 @@ const Register = () => {
           </div>
 
           <div className="mb-4">
+            
             <input
               type="email"
               name="email"
@@ -165,6 +166,7 @@ const Register = () => {
           </div>
 
           <div className="mb-4">
+           
             <input
               type="number"
               name="phone"
@@ -228,6 +230,7 @@ const Register = () => {
           </div>
 
           <div className="mb-4">
+          
             <input
               type="password"
               name="password"

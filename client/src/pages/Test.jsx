@@ -38,7 +38,9 @@ const sample = {
 
 const Test = () => {
 
- const restaurantDetails = {
+
+   
+  const restaurantDetails = {
     "_id": "6a63831593a4dc01e86d041a",
     "restaurantId": {
         "_id": "6a637ef76c3f9edac3a95035",
@@ -122,7 +124,7 @@ const Test = () => {
     "updatedAt": "2026-07-26T04:19:18.095Z",
     "__v": 12
 }
-    
+
   if ("geolocation" in navigator) {
     console.log("Location Avaliable");
   } else {

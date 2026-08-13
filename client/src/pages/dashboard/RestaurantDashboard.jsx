@@ -1,11 +1,11 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import RestaurantSidebar from "../../component/restaurantDashboard/RestaurantSidebar";
-import RestaurantOverview from "../../component/restaurantDashboard/RestaurantOverview";
-import RestaurantSetting from "../../component/restaurantDashboard/RestaurantSetting";
-import RestaurantOrders from "../../component/restaurantDashboard/RestaurantOrders";
-import RestaurantMenu from "../../component/restaurantDashboard/RestaurantOrders";
+import RestaurantSidebar from "../../component/restaurantDashboard/RestaurantSidebar.jsx";
+import RestaurantOverview from "../../component/restaurantDashboard/RestaurantOverview.jsx";
+import RestaurantSetting from "../../component/restaurantDashboard/RestaurantSetting.jsx";
+import RestaurantOrders from "../../component/restaurantDashboard/RestaurantOrders.jsx";
+import RestaurantMenu from "../../component/restaurantDashboard/RestaurantMenu.jsx";
 
 const RestaurantDashboard = () => {
   const { isLogin,role } = useAuth();
@@ -45,7 +45,7 @@ const RestaurantDashboard = () => {
           {activeTab === "overview" && <RestaurantOverview />}
           {activeTab === "orders" && <RestaurantOrders />}
           {activeTab === "settings" && <RestaurantSetting />}
-           {activeTab === "menu" && <RestaurantMenu />}
+          {activeTab === "menu" && <RestaurantMenu />}
         </div>
       </div>
     </>

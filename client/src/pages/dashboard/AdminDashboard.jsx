@@ -1,10 +1,10 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import AdminOrders from "../../component/adminDashboard/AdminOrders";
-import AdminOverview from "../../component/adminDashboard/AdminOverview";
-import AdminSetting from "../../component/adminDashboard/AdminSetting";
-import AdminSidebar from "../../component/adminDashboard/AdminSidebar";
+import AdminSetting from "../../component/adminDashboard/AdminSetting.jsx";
+import AdminSidebar from "../../component/adminDashboard/AdminSidebar.jsx";
+import AdminOverview from "../../component/adminDashboard/AdminOverview.jsx";
+import AdminOrders from "../../component/adminDashboard/AdminOrders.jsx";
 
 const AdminDashboard = () => {
   const { isLogin, role } = useAuth();
@@ -14,8 +14,8 @@ const AdminDashboard = () => {
 
   if (!isLogin || role !== "admin") {
     return (
-      <div className=" h-[92vh] bg-[-url('/foodTable.webp)] bg-cover bg-center">
-        <div className=" h-full backdrop-blur-lg flex flex-col items-center">
+      <div className="h-[92vh] bg-[url('/foodTable.webp')]  bg-cover bg-center">
+        <div className="h-full backdrop-blur-lg flex flex-col items-center justify-center ">
           <h1 className="text-2xl font-bold text-(--color-neutral-content)">
             Access Denied. Please log in as a Admin to view this page.
           </h1>
@@ -29,6 +29,7 @@ const AdminDashboard = () => {
       </div>
     );
   }
+
   return (
     <>
       <div className="h-[91vh] flex gap-2 p-2">

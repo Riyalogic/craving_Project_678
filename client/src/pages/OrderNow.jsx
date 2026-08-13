@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../config/api.config.js";
 import toast from "react-hot-toast";
-import Loader from "../component/Loader";
-import NoDataFound from "../component/NoDataFound";
+import Loader from "../component/Loader.jsx";
+import NoDataFound from "../component/NoDataFound.jsx";
 import defaultRestaurantImage from "../assets/Samplerestaurant.jpg";
 import heroBg from "../assets/carousel/bgImage1.jpg";
 import {
@@ -17,6 +17,7 @@ import {
 import { FaLeaf, FaDrumstickBite, FaUtensils } from "react-icons/fa";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
 import { TbToolsKitchen2 } from "react-icons/tb";
+
 const RESTAURANT_TYPES = [
   { value: "all", label: "All" },
   { value: "veg", label: "Veg", icon: <FaLeaf className="text-green-500" /> },
@@ -41,6 +42,7 @@ const RESTAURANT_TYPES = [
     icon: <MdOutlineRestaurantMenu className="text-purple-500" />,
   },
 ];
+
 const typeStyles = {
   veg: "bg-green-50 text-green-700 border-green-200",
   "non-veg": "bg-red-50 text-red-700 border-red-200",
@@ -48,6 +50,7 @@ const typeStyles = {
   jain: "bg-orange-50 text-orange-700 border-orange-200",
   both: "bg-purple-50 text-purple-700 border-purple-200",
 };
+
 const typeLabels = {
   veg: "Pure Veg",
   "non-veg": "Non-Veg",
@@ -60,7 +63,7 @@ const OrderNow = () => {
   const navigate = useNavigate();
   const [restaurants, setRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-   const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [selectedType, setSelectedType] = useState("all");
   const [showOpenOnly, setShowOpenOnly] = useState(false);
 
@@ -79,15 +82,11 @@ const OrderNow = () => {
     }
   };
 
-  const handleRestaurant = (restaurant) => {
-    navigate(`/restaurant-details/${restaurant._id}`);
-  };
-
   useEffect(() => {
     fetchRestaurants();
   }, []);
 
-   const filteredRestaurants = useMemo(() => {
+  const filteredRestaurants = useMemo(() => {
     return restaurants.filter((r) => {
       const q = searchQuery.toLowerCase();
       const matchSearch =
@@ -106,16 +105,15 @@ const OrderNow = () => {
   if (isLoading) return <Loader height="100vh" width="100%" />;
 
   return (
-      <div className="min-h-screen bg-(--color-base-200)">
+    <div className="min-h-screen bg-(--color-base-200)">
       <div className="relative overflow-hidden min-h-72 md:min-h-80 flex items-center justify-center text-center px-5 py-16">
-        <img
+          <img
           src={heroBg}
           alt="hero"
           className="absolute inset-0 w-full h-full object-cover object-center scale-105"
         />
-        
+ 
         <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/50 to-black/70" />
-
         <FaUtensils className="absolute top-8 left-10 text-white/10 text-6xl rotate-12 hidden md:block" />
         <MdOutlineRestaurantMenu className="absolute bottom-10 right-14 text-white/10 text-7xl -rotate-12 hidden md:block" />
         <FaLeaf className="absolute top-12 right-24 text-white/10 text-5xl rotate-6 hidden md:block" />
@@ -204,7 +202,7 @@ const OrderNow = () => {
                 }
                 className="bg-(--color-base-100) rounded-2xl overflow-hidden border border-(--color-base-300) shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group"
               >
-          
+              
                 <div className="relative w-full h-48 overflow-hidden bg-(--color-base-300)">
                   <img
                     src={restaurant?.coverImage?.url || defaultRestaurantImage}

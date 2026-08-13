@@ -4,7 +4,7 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import contactBg from "../assets/contactPage.jpg";
 import api from "../config/api.config.js";
 
-const ContactUs = () => {
+const Contact = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -16,7 +16,7 @@ const ContactUs = () => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const handleInputChange = async (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -44,13 +44,7 @@ const ContactUs = () => {
         email: formData.email.toLowerCase(),
       });
       toast.success(res.data.message);
-      setFormData({
-        fullName: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-      });
+      setFormData({ fullName: "", email: "", phone: "", subject: "", message: "" });
       setErrors({});
     } catch (error) {
       toast.error(
@@ -68,8 +62,11 @@ const ContactUs = () => {
         ? "border-(--color-error) border-2"
         : "border-(--color-base-300)"
     }`;
+
   return (
-    <div className="h-[90vh] flex items-center justify-start bg-[url('/contactPage.jpg')] bg-cover bg-center p-10 md:ps-30">
+    <div
+      className="h-[90vh] flex items-center justify-start bg-[url('/contactPage.jpg')] bg-cover bg-center p-10 md:ps-30"
+    >
       <div className="bg-white rounded-lg shadow-md px-10 py-6 max-w-md w-full overflow-y-auto max-h-[85vh]">
         <h1 className="text-3xl font-bold text-(--color-primary) mb-2 text-center">
           Contact Us
@@ -166,4 +163,5 @@ const ContactUs = () => {
     </div>
   );
 };
-export default ContactUs;
+
+export default Contact;

@@ -1,11 +1,10 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import RiderSidebar from "../../component/riderDashboard/RiderSidebar";
-import RiderSetting from "../../component/riderDashboard/RiderSetting";
-import RiderOverview from "../../component/riderDashboard/RiderOverview";
-import RiderOrders from "../../component/riderDashboard/RiderOrders"
-
+import RiderSidebar from "../../component/riderDashboard/RiderSidebar.jsx";
+import RiderOverview from "../../component/riderDashboard/RiderOverview.jsx";
+import RiderOrders from "../../component/riderDashboard/RiderOrders.jsx";
+import RiderSetting from "../../component/riderDashboard/RiderSetting.jsx";
 
 const RiderDashboard = () => {
   const { isLogin, role } = useAuth();

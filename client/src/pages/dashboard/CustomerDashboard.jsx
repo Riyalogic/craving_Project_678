@@ -1,13 +1,13 @@
 import React from "react";
+import CustomerSidebar from "../../component/customerDashboard/CustomerSidebar.jsx";
+import CustomerOverview from "../../component/customerDashboard/CustomerOverview.jsx";
+import CustomerOrders from "../../component/customerDashboard/CustomerOrders.jsx";
+import CustomerSetting from "../../component/customerDashboard/CustomerSetting.jsx";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import CustomerOverview from "../../component/customerDashboard/CustomerOverview";
-import CustomerOrders from "../../component/customerDashboard/CustomerOrders";
-import CustomerSetting from "../../component/customerDashboard/CustomerSetting";
-import CustomerSidebar from "../../component/customerDashboard/CustomerSidebar"
 
 const CustomerDashboard = () => {
-  const { isLogin,role } = useAuth();
+  const { isLogin, role } = useAuth();
   const navigate = useNavigate();
   const active = useLocation().state?.activeTab;
   const [activeTab, setActiveTab] = React.useState(active || "overview");
@@ -32,11 +32,11 @@ const CustomerDashboard = () => {
 
   return (
     <>
-      <div className=" h-[92vh] flex gap-2 m-2">
-        <div className=" w-3/17 bg-(--color-base-200) p-4 rounded-lg shadow-md h-full">
+      <div className="h-[91vh] flex gap-2 p-2">
+        <div className="w-3/17 bg-(--color-base-200) p-4 rounded-lg shadow-md h-full">
           <CustomerSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
-        <div className=" w-14/17 bg-(--color-base-100) p-4 rounded-lg shadow-md h-full">
+        <div className="w-14/17 bg-(--color-base-100) p-4 rounded-lg shadow-md h-full">
           {activeTab === "overview" && <CustomerOverview />}
           {activeTab === "orders" && <CustomerOrders />}
           {activeTab === "settings" && <CustomerSetting />}
