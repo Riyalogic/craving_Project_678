@@ -25,9 +25,9 @@ export const EditUserProfile = async (req, res, next) => {
     if (newPhoto) {
       existingUser?.photo?.publicId &&
         (await cloudinary.uploader.destroy(existingUser.photo.publicId));
+
       const b64 = Buffer.from(newPhoto.buffer).toString("base64");
       const dataURI = `data:${newPhoto.mimetype};base64,${b64}`;
-      // console.log(dataURI.slice(0, 100));
 
       const result = await cloudinary.uploader.upload(dataURI, {
         folder: "Cravings678/profile",
@@ -64,8 +64,12 @@ export const UpdateUserPassword = async (req, res, next) => {
       error.statusCode = 400;
       return next(error);
     }
-
-    const currentUser = req.user;
+    // const existingUser = await User.findOne({ email });
+    // if (!existingUser) {
+    //   const error = new Error("Email not registred");
+    //   error.statusCode = 404;
+    //   return next(error);
+    // }
 
     const isPasswordMatch = await bcrypt.compare(
       oldPassword,
@@ -80,7 +84,6 @@ export const UpdateUserPassword = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     currentUser.password = hashedPassword;
     await currentUser.save();
-
     await new Promise((resolve) => setTimeout(resolve, 3000));
 
     res.status(200).json({ message: "Password updated successfully" });
