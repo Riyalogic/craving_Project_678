@@ -7,7 +7,7 @@ const OrderSchema = mongoose.Schema(
       ref: "restaurant",
       required: true,
     },
-    customertId: {
+    customerId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "customer",
       required: true,
@@ -84,7 +84,7 @@ const OrderSchema = mongoose.Schema(
       },
     },
 
-    paymntDetails: {
+    paymentDetails: {
       type: {
         paymentMethod: {
           type: String,
@@ -95,6 +95,18 @@ const OrderSchema = mongoose.Schema(
           type: String,
           enum: ["pending", "completed", "failed"],
           default: "pending",
+        },
+        razorpayOrderId: {
+          type: String,
+        },
+        razorpayPaymentId: {
+          type: String,
+        },
+        razorpaySignature: {
+          type: String,
+        },
+        paidAt: {
+          type: Date,
         },
       },
     },

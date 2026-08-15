@@ -9,10 +9,10 @@ const RiderSchema = mongoose.Schema(
     },
     vehicleDetails: {
       type: {
-        vehivleType: { type: String, required: true },
-        vehivleNumber: { type: String, required: true },
-        vehivleModel: { type: String, required: true },
-        vehivleColor: { type: String, required: true },
+        vehicleType: { type: String, required: true },
+        vehicleNumber: { type: String, required: true },
+        vehicleModel: { type: String, required: true },
+        vehicleColor: { type: String, required: true },
       },
     },
     documents: {
@@ -29,7 +29,7 @@ const RiderSchema = mongoose.Schema(
         address: { type: String, required: true },
         city: { type: String, required: true },
         state: { type: String, required: true },
-        pincode: { type: String, required: true },
+        pinCode: { type: String, required: true },
         country: { type: String, required: true },
       },
     },

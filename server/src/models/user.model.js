@@ -41,7 +41,7 @@ const UserSchema = mongoose.Schema(
       enum: ["admin", "customer", "rider", "restaurant"],
       required: true,
       default: "customer",
-    }
+    },
   },
   {
     timestamps: true,
