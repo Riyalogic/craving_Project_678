@@ -4,11 +4,10 @@ import {
   LogoutUser,
   RegisterUser,
   SendOtp,
-  ResetPassword,
   VerifyOtp,
-} from "../controllers/auth.controller.js";
-
-import { OTPAuthProtect } from "../middlewares/auth.middleware.js";
+  ResetPassword,
+} from "../controller/auth.controller.js";
+import { OTPAuthProtect } from "../middleware/auth.middelware.js";
 
 const router = express.Router();
 

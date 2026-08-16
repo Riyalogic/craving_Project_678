@@ -1,7 +1,7 @@
 import express from "express";
 import multer from "multer";
 import {
-  RestaurantUpdateProfile,
+  //RestaurantUpdateProfile,
   RestaurantGetData,
   RestaurantUpdateInfo,
   OpenRestaurant,
@@ -17,21 +17,21 @@ import {
   RestaurantUpdateSocialMediaLinks,
   RestaurantUpdateCoverPhoto,
   RestaurantUpdateRestaurantImages,
-} from "../controllers/restaurant.controller.js";
-import { RestaurantAuthProtect } from "../middlewares/auth.middleware.js";
+} from "../controller/restaurant.controller.js";
+import { RestaurantAuthProtect } from "../middleware/auth.middelware.js";
 
 const upload = multer();
 const router = express.Router();
 
-router.post(
-  "/update-profile",
-  RestaurantAuthProtect,
-  upload.single("coverImage"),
-  upload.array("restaurantImage", 10),
-  RestaurantUpdateProfile,
-);
+// router.post(
+//   "/update-profile",
+//   RestaurantAuthProtect,
+//   upload.single("coverImage"),
+//   upload.array("restaurantImage", 10),
+//   RestaurantUpdateProfile,
+// );
 
-router.get("/get-restaurant-data", RestaurantAuthProtect, RestaurantGetData);
+router.get("/get-resturant-data", RestaurantAuthProtect, RestaurantGetData);
 
 router.put(
   "/update-restaurant-info",
@@ -50,6 +50,8 @@ router.put(
   RestaurantAuthProtect,
   RestaurantUpdateLegalInfo,
 );
+
+//Menu Routes
 
 router.get("/menu-items", RestaurantAuthProtect, RestaurantMenuItems);
 
@@ -84,6 +86,8 @@ router.delete(
   RestaurantAuthProtect,
   RestaurantDeleteMenuItem,
 );
+
+// Core Details Routes
 
 router.put(
   "/update-address",
