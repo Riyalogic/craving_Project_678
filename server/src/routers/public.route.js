@@ -3,7 +3,7 @@ import {
   ContactUsForm,
   GetAllRestaurants,
   GetRestaurantDetails,
-} from "../controller/public.controller.js";
+} from "../controllers/public.controller.js";
 
 const router = express.Router();
 

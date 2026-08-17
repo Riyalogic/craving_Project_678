@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 
 const AdminUser = {
   fullName: "Admin",
-  email: "Admin@craving678.com",
+  email: "Admin@cravings678.com",
   password: await bcrypt.hash("StrongPassword@123", 10),
   dob: "2000-01-01",
   gender: "other",
@@ -25,7 +25,7 @@ const adminSeed = async () => {
     console.log("Creating New Admin");
 
     const newAdmin = await User.create(AdminUser);
-    console.log("Admin Create Successfully");
+    console.log("Admin Create Sucessfully");
   } catch (error) {
     console.log("Admin Not Created");
     throw error;

@@ -4,7 +4,7 @@ export const uploadMultipleImages = async (Images, storageLocation) => {
   try {
     const uploadMultiple = Images.map(async (image) => {
       const b64 = Buffer.from(image.buffer).toString("base64");
-      const dataURI = `data:${image.mimeType};base64,${b64}`;
+      const dataURI = `data:${image.mimetype};base64,${b64}`;
 
       const result = await cloudinary.uploader.upload(dataURI, {
         folder: storageLocation,
@@ -15,11 +15,11 @@ export const uploadMultipleImages = async (Images, storageLocation) => {
 
       return {
         url: result.secure_url,
-        publcId: result.public_id,
+        publicId: result.public_id,
       };
     });
 
-    return await promises.all(uploadMultiple);
+    return await Promise.all(uploadMultiple);
   } catch (error) {
     console.log(error.message);
     throw error;
@@ -29,36 +29,39 @@ export const uploadMultipleImages = async (Images, storageLocation) => {
 export const deleteMultipleImages = async (Images) => {
   try {
     const deleteMultiple = Images.map(async (image) => {
-      await cloudinary.uploader.destroy(image.publcId);
+      await cloudinary.uploader.destroy(image.publicId);
     });
-    await promises.all(deleteMultiple);
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const deleteSingleImages = async (image) => {
-  try {
-    await cloudinary.uploader.destroy(image.publcId);
+    await Promise.all(deleteMultiple);
   } catch (error) {
     console.log(error.message);
     throw error;
   }
 };
 
-export const uploadSingleImages = async (image, storageLocation) => {
+export const deleteSingleImage = async (image) => {
   try {
-       console.log("Upload Started");
-    const b64 = Buffer.from(image.buffer).toString("base64");
-    const dataURI = `data:${image.mimeType};base64,${b64}`;
-     console.log("Data URI created:", dataURI.slice(0, 100));
+    await cloudinary.uploader.destroy(image.publicId);
+  } catch (error) {
+    console.log(error.message);
+    throw error;
+  }
+};
 
+export const uploadSingleImage = async (image, storageLocation) => {
+  try {
+    console.log("Upload Started");
+
+    const b64 = Buffer.from(image.buffer).toString("base64");
+    const dataURI = `data:${image.mimetype};base64,${b64}`;
+
+    console.log("Data URI created:", dataURI.slice(0, 100)); // Log the first 100 characters of the Data URI for debugging
     const result = await cloudinary.uploader.upload(dataURI, {
       folder: storageLocation,
       width: 500,
       height: 500,
       crop: "fill",
     });
+
     console.log("Image uploaded to Cloudinary:", {
       url: result.secure_url,
       publicId: result.public_id,
@@ -66,7 +69,7 @@ export const uploadSingleImages = async (image, storageLocation) => {
 
     return {
       url: result.secure_url,
-      publcId: result.public_id,
+      publicId: result.public_id,
     };
   } catch (error) {
     console.log("uploadSingleImage error details:", error);
